@@ -16,7 +16,7 @@ export default function EventCard() {
   const fetchEvent = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8080/api/v1/events/get-all-events"
+        "https://backend-production-c697.up.railway.app/api/v1/events/get-all-events"
       );
       setResult(res.data); // Set state with the data, not the entire response
     } catch (error) {

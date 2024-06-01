@@ -40,7 +40,7 @@ const EventCreation = () => {
     e.preventDefault();
     try {
       await axios.post(
-        "http://localhost:8080/api/v1/events/create-event",
+        "https://backend-production-c697.up.railway.app/api/v1/events/create-event",
         formData
       );
 
