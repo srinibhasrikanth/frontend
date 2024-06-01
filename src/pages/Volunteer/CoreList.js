@@ -19,7 +19,7 @@ const CoreList = () => {
       }
     };
     fetchCore();
-  });
+  }, [core]);
 
   return (
     <div className="m-5 p-5">
