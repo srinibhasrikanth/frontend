@@ -20,6 +20,10 @@ export default function Navbar() {
     navigate("/login"); // Redirect to the login page after logout
   };
 
+  const handleLogo = () => {
+    if (userRole == 0) navigate("/admin/dashboard");
+    else navigate("/volunteer/dashboard");
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" style={{ backgroundColor: "#3893c2" }}>
@@ -34,6 +38,7 @@ export default function Navbar() {
               src="/images/ACM.png"
               style={{ width: "40px", height: "40px" }}
               alt="ACM Logo"
+              onClick={handleLogo}
             />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
