@@ -43,7 +43,7 @@ export default function Navbar() {
             <Link to="/login">
               <Button color="inherit">Login</Button>
             </Link>
-          ) : userRole === "1" ? (
+          ) : userRole === "0" ? (
             <>
               <Link to="/admin/core">
                 <Button color="inherit">Core</Button>
