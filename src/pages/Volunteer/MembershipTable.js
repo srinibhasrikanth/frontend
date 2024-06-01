@@ -17,6 +17,7 @@ import {
 } from "@mui/material";
 import { toast } from "react-toastify";
 import * as XLSX from "xlsx";
+import axios from "axios";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -68,15 +69,19 @@ const AddMembershipData = ({ onClose }) => {
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];
         const json = XLSX.utils.sheet_to_json(worksheet);
-        setJsonData(JSON.stringify(json, null, 2));
+        setJsonData(JSON);
       };
       reader.readAsBinaryString(selectedFile);
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     try {
       // Handle the submission logic here, e.g., send data to server
+      const res = await axios.post(
+        "https://backend-production-c697.up.railway.app/api/v1/members/save-membership"
+      );
+
       toast.success("File uploaded and processed successfully");
       onClose();
     } catch (error) {
