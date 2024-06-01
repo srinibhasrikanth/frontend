@@ -24,7 +24,7 @@ import ZipDownloader from "./pages/Volunteer/ZipDownloader";
 import CoreList from "./pages/Volunteer/CoreList";
 import CoreTable from "./pages/Volunteer/CoreTable";
 import VolunteerTable from "./pages/Volunteer/VolunteerTable";
-import MembershipTable from "./pages/Volunteer/Membershiptable";
+import MembershipTable from "./pages/Volunteer/MembershipTable";
 
 const App = () => {
   return (
