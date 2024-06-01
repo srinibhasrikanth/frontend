@@ -10,7 +10,7 @@ const Footer = () => {
         textAlign: "center",
         position: "fixed",
         left: "0",
-        marginTop: 3,
+        marginTop: 10,
         bottom: "0",
         width: "100%",
       }}
