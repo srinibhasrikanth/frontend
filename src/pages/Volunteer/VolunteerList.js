@@ -22,6 +22,7 @@ const VolunteerList = ({ batch }) => {
   }, []);
 
   const filteredCore = core.filter((member) => member.batch === batch);
+  console.log(batch);
 
   return (
     <div className="m-5 p-5">
