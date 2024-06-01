@@ -43,22 +43,18 @@ const VolunteerList = () => {
               <td className="border px-1 py-2 text-gray-900">
                 {member.studentName}
               </td>
-              <td className="border px-1 py-2 text-gray-900">
-                {member.acmMembershipId}
-              </td>
+
               <td className="border px-1 py-2 text-gray-900">{member.email}</td>
               <td className="border px-1 py-2 text-gray-900">
                 {member.rollNumber}
               </td>
               <td className="border px-1 py-2 text-gray-900">
-                {member.position}
+                {member.domain}
               </td>
               <td className="border px-1 py-2 text-gray-900">
                 {member.phoneNumber}
               </td>
-              <td className="border px-1 py-2 text-gray-900">
-                {member.section}
-              </td>
+              <td className="border px-1 py-2 text-gray-900">{member.email}</td>
             </tr>
           ))}
         </tbody>
