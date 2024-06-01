@@ -28,7 +28,7 @@ const MembershipList = () => {
       <table className="min-w-full bg-white border border-gray-300 shadow-md rounded-md overflow-hidden">
         <thead className="bg-[#3893c2] text-white">
           <tr>
-            <th className="px-4 py-2">Name</th>
+            <th className="px-4 py-2">FirstName</th>
             <th className="px-4 py-2">Acm Membership Id</th>
             <th className="px-4 py-2">Email</th>
             <th className="px-4 py-2">Roll Number</th>
