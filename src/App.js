@@ -39,7 +39,7 @@ const App = () => {
         <Route path="/admin/events" element={<Events />} />
         <Route path="/admin/letters" element={<Letters />} />
         {/* volunteer side */}
-        <Route path="/volunteer/add-core" element={<CoreList />} />
+        <Route path="/volunteer/add-core" element={<AddCoreList />} />
         <Route
           path="/volunteer/add-membership"
           element={<AddMembershipData />}

@@ -1,5 +1,7 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const CoreList = () => {
   const coreMembers = [
@@ -113,6 +115,22 @@ const CoreList = () => {
     },
   ];
 
+  const [core, setCore] = useState([]);
+
+  useEffect(() => {
+    const fetchCore = async (req, res) => {
+      try {
+        const res = await axios.get(
+          "https://backend-production-c697.up.railway.app/api/v1/core/get-core"
+        );
+        setCore(res.data.coreMembers);
+        
+      } catch (error) {
+        toast.error("Something went wrong");
+      }
+    };
+  });
+
   return (
     <div className="m-5 p-5">
       <h1 className="text-2xl font-bold mb-4 text-center">Core Team</h1>
@@ -120,10 +138,12 @@ const CoreList = () => {
         <thead className="bg-[#3893c2] text-white">
           <tr>
             <th className="px-4 py-2">Name</th>
-            <th className="px-4 py-2">LinkedIn Profile</th>
+            <th className="px-4 py-2">Acm Membership Id</th>
             <th className="px-4 py-2">Email</th>
-            <th className="px-4 py-2">Team</th>
-            <th className="px-4 py-2">Batch</th>
+            <th className="px-4 py-2">Roll Number</th>
+            <th className="px-4 py-2">Position</th>
+            <th className="px-4 py-2">Phone Number</th>
+            <th className="px-4 py-2">Section</th>
           </tr>
         </thead>
         <tbody>
@@ -133,18 +153,17 @@ const CoreList = () => {
                 {member.studentName}
               </td>
               <td className="border px-1 py-2 text-gray-900">
-                <Link
-                  to={member.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-900 hover:underline"
-                >
-                  {member.linkedin}
-                </Link>
+                {member.acmMembershipId}
               </td>
               <td className="border px-1 py-2 text-gray-900">{member.email}</td>
               <td className="border px-1 py-2 text-gray-900">
+                {member.rollNumber}
+              </td>
+              <td className="border px-1 py-2 text-gray-900">
                 {member.position}
+              </td>
+              <td className="border px-1 py-2 text-gray-900">
+                {member.phoneNumber}
               </td>
               <td className="border px-1 py-2 text-gray-900">
                 {member.section}
