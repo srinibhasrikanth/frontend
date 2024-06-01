@@ -1,54 +1,68 @@
-import React, { useState } from "react";
-import { Card, CardContent, Button, Typography } from "@mui/material";
-import * as XLSX from "xlsx";
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
-const AddVolunteerList = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [jsonData, setJsonData] = useState("");
+function CustomTabPanel(props) {
+  const { children, value, index, ...other } = props;
 
-  const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+CustomTabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
   };
+}
 
-  const handleConvert = () => {
-    if (selectedFile) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const data = e.target.result;
-        const workbook = XLSX.read(data, { type: "binary" });
-        const sheetName = workbook.SheetNames[0];
-        const worksheet = workbook.Sheets[sheetName];
-        const json = XLSX.utils.sheet_to_json(worksheet);
-        setJsonData(JSON.stringify(json, null, 2));
-      };
-      reader.readAsBinaryString(selectedFile);
-    }
+export default function BasicTabs() {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
 
   return (
-    <Card>
-      <CardContent>
-        <Typography variant="h5" component="h2" gutterBottom>
-          Upload File
-        </Typography>
-        <input
-          type="file"
-          accept=".xls,.xlsx"
-          onChange={handleFileChange}
-          style={{ marginBottom: "1rem" }}
-        />
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleConvert}
-          disabled={!selectedFile}
-        >
-          Convert
-        </Button>
-        {jsonData && <pre style={{ marginTop: "1rem" }}>{jsonData}</pre>}
-      </CardContent>
-    </Card>
+    <Box sx={{ width: '100%' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+          <Tab label="Item One" {...a11yProps(0)} />
+          <Tab label="Item Two" {...a11yProps(1)} />
+          <Tab label="Item Three" {...a11yProps(2)} />
+        </Tabs>
+      </Box>
+      <CustomTabPanel value={value} index={0}>
+        Item One
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
+        Item Two
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={2}>
+        Item Three
+      </CustomTabPanel>
+    </Box>
   );
-};
-
-export default AddVolunteerList;
+}

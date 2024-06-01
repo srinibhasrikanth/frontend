@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import { Link } from "react-router-dom";
 
-const Core = () => {
-  // const [coreMembers, setCoreMembers] = useState([]);
+const CoreList = () => {
   const coreMembers = [
     {
       rollNumber: "20071A1216",
@@ -114,27 +112,12 @@ const Core = () => {
       section: 2,
     },
   ];
-  // useEffect(() => {
-  //   // Fetch core members from the backend
-  //   const fetchCoreMembers = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         "http://localhost:8000/api/v1/members/volunteer-list"
-  //       );
-  //       setCoreMembers(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching core members:", error);
-  //     }
-  //   };
-
-  //   fetchCoreMembers();
-  // }, []);
 
   return (
-    <div className="ml-64 mr-20">
-      <h1 className="text-2xl font-bold mb-4">Volunteer Details</h1>
+    <div className="m-5 p-5">
+      <h1 className="text-2xl font-bold mb-4 text-center">Core Team</h1>
       <table className="min-w-full bg-white border border-gray-300 shadow-md rounded-md overflow-hidden">
-        <thead className="bg-gray-800 text-white">
+        <thead className="bg-[#3893c2] text-white">
           <tr>
             <th className="px-4 py-2">Name</th>
             <th className="px-4 py-2">LinkedIn Profile</th>
@@ -145,8 +128,10 @@ const Core = () => {
         </thead>
         <tbody>
           {coreMembers.map((member) => (
-            <tr key={member._id} className="hover:bg-gray-100">
-              <td className="border px-1 py-2 text-gray-900">{member.name}</td>
+            <tr key={member.rollNumber} className="hover:bg-gray-100">
+              <td className="border px-1 py-2 text-gray-900">
+                {member.studentName}
+              </td>
               <td className="border px-1 py-2 text-gray-900">
                 <Link
                   to={member.linkedin}
@@ -158,9 +143,12 @@ const Core = () => {
                 </Link>
               </td>
               <td className="border px-1 py-2 text-gray-900">{member.email}</td>
-              <td className="border px-1 py-2 text-gray-900">{member.team}</td>
-
-              <td className="border px-1 py-2 text-gray-900">{member.batch}</td>
+              <td className="border px-1 py-2 text-gray-900">
+                {member.position}
+              </td>
+              <td className="border px-1 py-2 text-gray-900">
+                {member.section}
+              </td>
             </tr>
           ))}
         </tbody>
@@ -169,4 +157,4 @@ const Core = () => {
   );
 };
 
-export default Core;
+export default CoreList;

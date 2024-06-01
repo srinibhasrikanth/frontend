@@ -21,7 +21,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./pages/Auth/Login";
 import ZipDownloader from "./pages/Volunteer/ZipDownloader";
-import Core from "./pages/Volunteer/Core";
+import CoreList from "./pages/Volunteer/CoreList";
+
 const App = () => {
   return (
     <>
@@ -38,7 +39,7 @@ const App = () => {
         <Route path="/admin/events" element={<Events />} />
         <Route path="/admin/letters" element={<Letters />} />
         {/* volunteer side */}
-        <Route path="/volunteer/add-core" element={<Core />} />
+        <Route path="/volunteer/add-core" element={<CoreList />} />
         <Route
           path="/volunteer/add-membership"
           element={<AddMembershipData />}
