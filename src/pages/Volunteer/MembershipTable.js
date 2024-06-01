@@ -69,7 +69,7 @@ const AddMembershipData = ({ onClose }) => {
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];
         const json = XLSX.utils.sheet_to_json(worksheet);
-        setJsonData(JSON.stringify(json, null, 2)); // Corrected JSON.stringify
+        setJsonData(JSON); // Corrected JSON.stringify
       };
       reader.readAsBinaryString(selectedFile);
     }
