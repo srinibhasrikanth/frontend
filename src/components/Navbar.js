@@ -65,13 +65,13 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Link to="/volunteer/add-core">
+              <Link to="/volunteer/core">
                 <Button color="inherit"> Core</Button>
               </Link>
-              <Link to="/volunteer/add-volunteer">
+              <Link to="/volunteer/volunteer">
                 <Button color="inherit"> Volunteer</Button>
               </Link>
-              <Link to="/volunteer/add-membership">
+              <Link to="/volunteer/membership">
                 <Button color="inherit"> Membership</Button>
               </Link>
               <Link to="/volunteer/event-creation">

@@ -22,6 +22,9 @@ import "react-toastify/dist/ReactToastify.css";
 import Login from "./pages/Auth/Login";
 import ZipDownloader from "./pages/Volunteer/ZipDownloader";
 import CoreList from "./pages/Volunteer/CoreList";
+import CoreTable from "./pages/Volunteer/CoreTable";
+import VolunteerTable from "./pages/Volunteer/VolunteerTable";
+import MembershipTable from "./pages/Volunteer/Membershiptable";
 
 const App = () => {
   return (
@@ -40,6 +43,9 @@ const App = () => {
         <Route path="/admin/letters" element={<Letters />} />
         {/* volunteer side */}
         <Route path="/volunteer/add-core" element={<AddCoreList />} />
+        <Route path="/volunteer/core" element={<CoreTable />} />
+        <Route path="/volunteer/volunteer" element={<VolunteerTable />} />
+        <Route path="/volunteer/membership" element={<MembershipTable />} />
         <Route
           path="/volunteer/add-membership"
           element={<AddMembershipData />}
