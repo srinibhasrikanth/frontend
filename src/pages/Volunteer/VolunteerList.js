@@ -21,9 +21,6 @@ const VolunteerList = ({ batch }) => {
     fetchCore();
   }, []);
 
-  const filteredCore = core.filter((member) => member.batch === batch);
-  console.log(batch);
-
   return (
     <div className="m-5 p-5">
       <h1 className="text-2xl font-bold mb-4 text-center">Core Team</h1>
@@ -38,7 +35,7 @@ const VolunteerList = ({ batch }) => {
           </tr>
         </thead>
         <tbody>
-          {filteredCore.map((member) => (
+          {core.map((member) => (
             <tr key={member.rollNumber} className="hover:bg-gray-100">
               <td className="border px-1 py-2 text-gray-900">
                 {member.studentName}
