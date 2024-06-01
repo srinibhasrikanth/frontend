@@ -14,7 +14,6 @@ import Memberships from "./pages/Admin/Memberships";
 import Volunteers from "./pages/Admin/Volunteers";
 import Events from "./pages/Admin/Events";
 import Letters from "./pages/Admin/Letters";
-import FileUploader from "./pages/Volunteer/FileUploader";
 import EventCard from "./pages/Volunteer/EventCard";
 import EventDescription from "./pages/Volunteer/EventDescription";
 import { ToastContainer, toast } from "react-toastify";
@@ -58,7 +57,6 @@ const App = () => {
         />
         <Route path="/volunteer/event-creation" element={<EventCreation />} />
         <Route path="/volunteer/:id" element={<EventDescription />} />
-        <Route path="/volunteer/file-uploader" element={<FileUploader />} />
       </Routes>
     </>
   );
