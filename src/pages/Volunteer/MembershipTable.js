@@ -79,7 +79,7 @@ const AddMembershipData = ({ onClose }) => {
     try {
       // Handle the submission logic here, e.g., send data to server
       const res = await axios.post(
-        "https://backend-production-c697.up.railway.app/api/v1/members/save-membership",
+        "https://backend-production-c697.up.railway.app/api/v1/members/add-membership",
         jsonData
       );
 
