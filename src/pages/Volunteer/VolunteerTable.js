@@ -1,11 +1,18 @@
-import * as React from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import CoreList from "./CoreList";
-import { Button } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+} from "@mui/material";
 import { toast } from "react-toastify";
 
 function CustomTabPanel(props) {
@@ -43,18 +50,29 @@ function a11yProps(index) {
 
 export default function VolunteerTable() {
   const [value, setValue] = React.useState(0);
+  const [open, setOpen] = React.useState(false);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   const handleAdd = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleSubmit = () => {
     try {
       toast.success("Added successfully");
+      setOpen(false);
     } catch (error) {
       toast.error("Something went wrong");
     }
   };
+
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -66,7 +84,7 @@ export default function VolunteerTable() {
           <Tab label="2023-24" {...a11yProps(0)} />
           <Tab label="2024-25" {...a11yProps(1)} />
           <Button variant="contained" onClick={handleAdd}>
-            Add New{" "}
+            Add New
           </Button>
         </Tabs>
       </Box>
@@ -76,6 +94,28 @@ export default function VolunteerTable() {
       <CustomTabPanel value={value} index={1}>
         Item Two
       </CustomTabPanel>
+
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Add New Item</DialogTitle>
+        <DialogContent>
+          <TextField
+            margin="dense"
+            id="file"
+            label="Upload File"
+            type="file"
+            fullWidth
+            variant="outlined"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleSubmit} color="primary">
+            Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }
