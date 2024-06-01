@@ -11,7 +11,7 @@ const HomePage = () => {
   };
   return (
     <div>
-      <div className="hero min-h-screen bg-white">
+      <div className="hero  bg-white">
         <div className="hero-content flex-col lg:flex-row">
           <img src="/images/ACM.png" className="max-w-sm " />
           <div>
