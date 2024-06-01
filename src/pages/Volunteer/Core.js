@@ -3,23 +3,23 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Core = () => {
-  const [coreMembers, setCoreMembers] = useState([]);
+  // const [coreMembers, setCoreMembers] = useState([]);
 
-  useEffect(() => {
-    // Fetch core members from the backend
-    const fetchCoreMembers = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:8000/api/v1/members/volunteer-list"
-        );
-        setCoreMembers(response.data);
-      } catch (error) {
-        console.error("Error fetching core members:", error);
-      }
-    };
+  // useEffect(() => {
+  //   // Fetch core members from the backend
+  //   const fetchCoreMembers = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "http://localhost:8000/api/v1/members/volunteer-list"
+  //       );
+  //       setCoreMembers(response.data);
+  //     } catch (error) {
+  //       console.error("Error fetching core members:", error);
+  //     }
+  //   };
 
-    fetchCoreMembers();
-  }, []);
+  //   fetchCoreMembers();
+  // }, []);
 
   return (
     <div className="ml-64 mr-20">
@@ -34,7 +34,7 @@ const Core = () => {
             <th className="px-4 py-2">Batch</th>
           </tr>
         </thead>
-        <tbody>
+        {/* <tbody>
           {coreMembers.map((member) => (
             <tr key={member._id} className="hover:bg-gray-100">
               <td className="border px-1 py-2 text-gray-900">{member.name}</td>
@@ -54,7 +54,7 @@ const Core = () => {
               <td className="border px-1 py-2 text-gray-900">{member.batch}</td>
             </tr>
           ))}
-        </tbody>
+        </tbody> */}
       </table>
     </div>
   );
