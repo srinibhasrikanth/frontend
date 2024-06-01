@@ -18,6 +18,7 @@ import {
 import { toast } from "react-toastify";
 import * as XLSX from "xlsx";
 import axios from "axios";
+import MembershipList from "./MembershipList";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -161,7 +162,7 @@ export default function VolunteerTable() {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <CoreList />
+        <MembershipList />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         Item Two
