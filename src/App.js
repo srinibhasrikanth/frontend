@@ -54,7 +54,6 @@ const App = () => {
         <Route path="/volunteer/:id" element={<EventDescription />} />
         <Route path="/volunteer/file-uploader" element={<FileUploader />} />
       </Routes>
-      <Footer />
     </>
   );
 };
