@@ -6,7 +6,7 @@ import { Typography } from "@mui/material";
 const Dashboard = () => {
   return (
     <div>
-      <Typography variant="h2" component={div}>
+      <Typography variant="h2" component="div">
         Welcome to Volunteer Dashboard.
       </Typography>
       <EventCard />
