@@ -28,11 +28,11 @@ const MembershipList = () => {
       <table className="min-w-full bg-white border border-gray-300 shadow-md rounded-md overflow-hidden">
         <thead className="bg-[#3893c2] text-white">
           <tr>
-            <th className="px-4 py-2">FirstName</th>
-            <th className="px-4 py-2">Acm Membership Id</th>
+            <th className="px-4 py-2">First Name</th>
+            <th className="px-4 py-2">Last Name</th>
             <th className="px-4 py-2">Email</th>
             <th className="px-4 py-2">Roll Number</th>
-            <th className="px-4 py-2">Position</th>
+            <th className="px-4 py-2">Year</th>
             <th className="px-4 py-2">Phone Number</th>
             <th className="px-4 py-2">Section</th>
           </tr>
@@ -41,18 +41,16 @@ const MembershipList = () => {
           {core.map((member) => (
             <tr key={member.rollNumber} className="hover:bg-gray-100">
               <td className="border px-1 py-2 text-gray-900">
-                {member.studentName}
+                {member.firstName}
               </td>
               <td className="border px-1 py-2 text-gray-900">
-                {member.acmMembershipId}
+                {member.lastName}
               </td>
               <td className="border px-1 py-2 text-gray-900">{member.email}</td>
               <td className="border px-1 py-2 text-gray-900">
                 {member.rollNumber}
               </td>
-              <td className="border px-1 py-2 text-gray-900">
-                {member.position}
-              </td>
+              <td className="border px-1 py-2 text-gray-900">{member.year}</td>
               <td className="border px-1 py-2 text-gray-900">
                 {member.phoneNumber}
               </td>
