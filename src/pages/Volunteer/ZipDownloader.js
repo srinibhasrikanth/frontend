@@ -1,0 +1,105 @@
+import React from "react";
+import jsPDF from "jspdf";
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
+import { Button } from "@mui/material";
+
+const ZipDownloader = ({ item }) => {
+  const generatePDFs = () => {
+    //approval form
+    const pdf1 = new jsPDF();
+    pdf1.setFontSize(16);
+    pdf1.setFont("helvetica", "normal");
+    pdf1.addImage("/images/approval.png", "PNG", 0, 0, 200, 300);
+    pdf1.setFontSize(12);
+    pdf1.setFont("times", "normal");
+    pdf1.text(150, 87.5, "09-09-2024");
+
+    let pdf1Blob = null;
+    let pdf2Blob = null;
+
+    if (item.item) {
+      const {
+        title,
+        type,
+        to_whom,
+        date,
+        time,
+        venue,
+        resourcePerson,
+        modeOfConduct,
+        resourcesRequired,
+        conductedBy,
+        no_of_volunteers,
+        prize_money,
+        budget,
+        remarks,
+      } = item.item;
+      console.log(item.item);
+
+      pdf1.text(90, 110, String(title));
+      pdf1.text(90, 119, String(type));
+      pdf1.text(90, 128, String(to_whom));
+      pdf1.text(90, 137, String(date));
+      pdf1.text(90, 146, String(time));
+      pdf1.text(90, 154, String(venue));
+      pdf1.text(90, 163, String(resourcePerson));
+      pdf1.text(90, 172, String(modeOfConduct));
+      pdf1.text(90, 180, String(resourcesRequired));
+      pdf1.text(90, 189, String(conductedBy));
+      pdf1.text(90, 199, String(no_of_volunteers));
+      pdf1.text(90, 207, String(prize_money));
+      pdf1.text(90, 215, String(budget));
+      pdf1.text(90, 224, String(remarks));
+
+      pdf1Blob = pdf1.output("blob");
+
+      //circular form
+      const pdf2 = new jsPDF();
+      pdf2.setFontSize(16);
+      pdf2.setFont("helvetica", "normal");
+      pdf2.addImage("/images/circular.png", "PNG", 0, 0, 200, 300);
+      pdf2.setFontSize(12);
+      pdf2.setFont("times", "normal");
+      pdf2.text(153, 75, "09-09-2024");
+
+      pdf2.text(90, 127, String(title));
+      pdf2.text(90, 138, String(type));
+      pdf2.text(90, 150, String(to_whom));
+      pdf2.text(90, 162, String(date));
+      pdf2.text(90, 174, String(time));
+      pdf2.text(90, 186, String(venue));
+      pdf2.text(90, 198, String(resourcePerson));
+      pdf2.text(90, 212, String(modeOfConduct));
+      pdf2Blob = pdf2.output("blob");
+    }
+
+    return { pdf1Blob, pdf2Blob };
+  };
+
+  const createAndDownloadZip = () => {
+    const { pdf1Blob, pdf2Blob } = generatePDFs();
+
+    const zip = new JSZip();
+    zip.file("pdf1.pdf", pdf1Blob);
+    zip.file("pdf2.pdf", pdf2Blob);
+
+    zip.generateAsync({ type: "blob" }).then((content) => {
+      saveAs(content, "pdfs.zip");
+    });
+  };
+
+  return (
+    <div>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={createAndDownloadZip}
+      >
+        Download ZIP of PDFs
+      </Button>
+    </div>
+  );
+};
+
+export default ZipDownloader;
