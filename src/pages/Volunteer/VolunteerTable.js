@@ -147,9 +147,6 @@ export default function VolunteerTable() {
     setOpen(false);
   };
 
-  const y1 = "2023-24";
-  const y2 = "2023-24";
-
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -166,10 +163,10 @@ export default function VolunteerTable() {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <VolunteerList batch={{ y1 }} />
+        <VolunteerList batch="2024-25" />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <VolunteerList batch={{ y2 }} />
+        <VolunteerList batch="2024-25" />
       </CustomTabPanel>
 
       <Dialog open={open} onClose={handleClose}>
