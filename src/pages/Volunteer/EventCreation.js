@@ -45,7 +45,7 @@ const EventCreation = () => {
       );
 
       toast.success("Event is successfully created");
-      navigate("/volunteer/event-creation");
+      navigate("/volunteer/dashboard");
       setFormData({
         title: "",
         type: "",
