@@ -163,10 +163,10 @@ export default function VolunteerTable() {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <VolunteerList />
+        <VolunteerList batch={"2024-25"} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        Item Two
+        <VolunteerList batch={"2023-24"} />
       </CustomTabPanel>
 
       <Dialog open={open} onClose={handleClose}>

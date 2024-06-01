@@ -1,13 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const VolunteerList = () => {
+const VolunteerList = ({ batch }) => {
   const [core, setCore] = useState([]);
 
   useEffect(() => {
-    const fetchCore = async (req, res) => {
+    const fetchCore = async () => {
       try {
         const res = await axios.get(
           "https://backend-production-c697.up.railway.app/api/v1/volunteer/get-volunteer"
@@ -20,7 +19,9 @@ const VolunteerList = () => {
       }
     };
     fetchCore();
-  }, [core]);
+  }, []);
+
+  const filteredCore = core.filter((member) => member.batch === batch);
 
   return (
     <div className="m-5 p-5">
@@ -29,7 +30,6 @@ const VolunteerList = () => {
         <thead className="bg-[#3893c2] text-white">
           <tr>
             <th className="px-4 py-2">Name</th>
-
             <th className="px-4 py-2">Email</th>
             <th className="px-4 py-2">Roll Number</th>
             <th className="px-4 py-2">Domain</th>
@@ -37,12 +37,11 @@ const VolunteerList = () => {
           </tr>
         </thead>
         <tbody>
-          {core.map((member) => (
+          {filteredCore.map((member) => (
             <tr key={member.rollNumber} className="hover:bg-gray-100">
               <td className="border px-1 py-2 text-gray-900">
                 {member.studentName}
               </td>
-
               <td className="border px-1 py-2 text-gray-900">{member.email}</td>
               <td className="border px-1 py-2 text-gray-900">
                 {member.rollNumber}
