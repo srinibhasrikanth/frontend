@@ -18,6 +18,7 @@ const CoreList = () => {
         toast.error("Something went wrong");
       }
     };
+    fetchCore();
   });
 
   return (
