@@ -10,6 +10,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -21,10 +22,13 @@ const Login = () => {
     e.preventDefault();
     console.log(username, password);
     try {
-      const res = await axios.post("http://localhost:8080/api/v1/auth/login", {
-        username,
-        password,
-      });
+      const res = await axios.post(
+        "https://backend-production-c697.up.railway.app/api/v1/auth/login",
+        {
+          username,
+          password,
+        }
+      );
 
       console.log(res);
       if (res.data.success) {
@@ -50,7 +54,7 @@ const Login = () => {
         console.log("login failed");
       }
     } catch (error) {
-      console.error("Login error:", error);
+      toast.error("Login error:", error);
     }
   };
 
