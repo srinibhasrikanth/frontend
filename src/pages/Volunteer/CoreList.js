@@ -13,6 +13,7 @@ const CoreList = () => {
           "https://backend-production-c697.up.railway.app/api/v1/core/get-core"
         );
         console.log(res.data.coreMembers);
+        
         setCore(res.data.coreMembers);
       } catch (error) {
         toast.error("Something went wrong");
