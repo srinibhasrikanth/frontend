@@ -82,12 +82,12 @@ const ZipDownloader = ({ item }) => {
       pdf3.setFontSize(16);
       pdf3.setFont("helvetica", "normal");
       pdf3.addImage("/images/Letter.png", "PNG", 0, 0, 200, 300);
-      pdf3.setFontSize(12);
+      pdf3.setFontSize(14);
       pdf3.setFont("times", "normal");
-      pdf3.text(160, 58, String(current));
+      pdf3.text(170, 59, String(current));
       pdf3.text(
         40,
-        83,
+        82,
         ` Seeking permission to promote public relations activities regarding ${String(
           title
         )} in the college.`
