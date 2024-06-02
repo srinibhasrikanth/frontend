@@ -32,6 +32,7 @@ const ZipDownloader = ({ item }) => {
     let pdf1Blob = null;
     let pdf2Blob = null;
     let pdf3Blob = null;
+    let pdf4Blob = null;
 
     if (item.item) {
       const {
@@ -151,9 +152,70 @@ const ZipDownloader = ({ item }) => {
       });
 
       pdf3Blob = pdf3.output("blob");
+
+      // permission letter
+      const pdf4 = new jsPDF();
+      pdf4.setFontSize(16);
+      pdf4.setFont("helvetica", "normal");
+      pdf4.addImage("/images/pr_permission.png", "PNG", 0, 0, 200, 300);
+      pdf4.setFontSize(14);
+      pdf4.setFont("times", "normal");
+      pdf4.text(170, 59, formatDate(current));
+
+      const splitTextIntoLines1 = (text, maxLength) => {
+        const words = text.split(" ");
+        const lines = [];
+        let currentLine = "";
+
+        words.forEach((word) => {
+          if ((currentLine + word).length <= maxLength) {
+            currentLine += `${word} `;
+          } else {
+            lines.push(currentLine.trim());
+            currentLine = `${word} `;
+          }
+        });
+
+        if (currentLine.length > 0) {
+          lines.push(currentLine.trim());
+        }
+
+        return lines;
+      };
+
+      const lines1a = splitTextIntoLines1(
+        `Subject: Seeking permission to use ${String(venue)} for ${String(
+          title
+        )} in the college.`,
+        90
+      );
+      const lines2a = splitTextIntoLines1(
+        `ACM Student Chapter of VNRVJIET, in association with the Department of Information Technology proposed to conduct ${String(
+          title
+        )} for ${String(
+          to_whom
+        )}. As a part of this event we request you to grant permission for conducting event in ${String(
+          venue
+        )} in college on ${formatDate(String(date))}.`,
+        90
+      );
+
+      let ya = 82;
+      lines1a.forEach((line) => {
+        pdf4.text(25, y, line);
+        y += 10;
+      });
+
+      ya += 10; // Add some space between paragraphs
+      lines2a.forEach((line) => {
+        pdf4.text(20, y, line);
+        ya += 10;
+      });
+
+      pdf4Blob = pdf4.output("blob");
     }
 
-    return { pdf1Blob, pdf2Blob, pdf3Blob };
+    return { pdf1Blob, pdf2Blob, pdf3Blob, pdf4Blob };
   };
 
   const createAndDownloadZip = () => {
@@ -162,7 +224,8 @@ const ZipDownloader = ({ item }) => {
     const zip = new JSZip();
     zip.file("approval.pdf", pdf1Blob);
     zip.file("circular.pdf", pdf2Blob);
-    zip.file("permission.pdf", pdf3Blob);
+    zip.file("pr_permission.pdf", pdf3Blob);
+    zip.file("venue_permission.pdf", pdf4Blob);
     console.log(titleZip);
     zip.generateAsync({ type: "blob" }).then((content) => {
       saveAs(content, `${titleZip}.zip`);
