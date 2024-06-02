@@ -6,9 +6,18 @@ import { Typography } from "@mui/material";
 const Dashboard = () => {
   return (
     <div>
-      <Typography variant="h2" component="div">
+      <h2
+        style={{
+          fontFamily: "Poppins",
+          fontWeight: 400,
+          fontStyle: "normal",
+          textAlign:"center",
+          margin:4,
+          fontSize:"30px"
+        }}
+      >
         Welcome to Volunteer Dashboard.
-      </Typography>
+      </h2>
       <EventCard />
     </div>
   );

@@ -95,7 +95,7 @@ const ZipDownloader = ({ item }) => {
     zip.file("pdf2.pdf", pdf2Blob);
     zip.file("pdf3.pdf", pdf3Blob);
     zip.generateAsync({ type: "blob" }).then((content) => {
-      saveAs(content, `${title}.zip`);
+      saveAs(content, `${item.title}.zip`);
     });
   };
 
