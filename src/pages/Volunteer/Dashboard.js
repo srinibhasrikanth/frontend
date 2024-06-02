@@ -6,9 +6,9 @@ import { Redirect, useNavigate } from "react-router-dom"; // Ensure you have rea
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
+  const data = localStorage.getItem("auth").token;
 
-  if (!isAuthenticated) {
+  if (!data) {
     navigate("/login"); // Redirect to login page if not authenticated
   }
 

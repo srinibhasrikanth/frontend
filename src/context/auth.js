@@ -27,7 +27,6 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     axios.defaults.headers.common["Authorization"] = auth?.token;
   }, [auth.token]);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const logout = () => {
     setAuth({
@@ -35,7 +34,6 @@ const AuthProvider = ({ children }) => {
       token: "",
     });
     localStorage.removeItem("auth");
-    setIsAuthenticated(false);
   };
 
   return (
