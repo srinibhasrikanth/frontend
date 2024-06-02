@@ -130,8 +130,10 @@ const ZipDownloader = ({ item }) => {
       const lines2 = splitTextIntoLines(
         `ACM Student Chapter of VNRVJIET, in association with the Department of Information Technology proposed to conduct ${String(
           title
-        )} for ${String(to_whom)}. As a part of this event we request you to grant permission for conducting PR in college on ${formatDate(
-          pr_date
+        )} for ${String(
+          to_whom
+        )}. As a part of this event we request you to grant permission for conducting PR in college on ${formatDate(
+          String(pr_date)
         )}.`,
         90
       );
