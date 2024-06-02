@@ -156,9 +156,7 @@ export default function VolunteerTable() {
         >
           <Tab label="2023-24" {...a11yProps(0)} />
           <Tab label="2024-25" {...a11yProps(1)} />
-          <Button variant="contained" onClick={handleAdd}>
-            Add New
-          </Button>
+        
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
