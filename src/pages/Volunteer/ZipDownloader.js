@@ -99,32 +99,54 @@ const ZipDownloader = ({ item }) => {
       pdf3.setFontSize(14);
       pdf3.setFont("times", "normal");
       pdf3.text(170, 59, formatDate(current));
-      pdf3.text(
-        25,
-        82,
-        ` Subject: Seeking permission to promote public relations activities regarding
-        `
+
+      const splitTextIntoLines = (text, maxLength) => {
+        const words = text.split(" ");
+        const lines = [];
+        let currentLine = "";
+
+        words.forEach((word) => {
+          if ((currentLine + word).length <= maxLength) {
+            currentLine += `${word} `;
+          } else {
+            lines.push(currentLine.trim());
+            currentLine = `${word} `;
+          }
+        });
+
+        if (currentLine.length > 0) {
+          lines.push(currentLine.trim());
+        }
+
+        return lines;
+      };
+
+      const lines1 = splitTextIntoLines(
+        `Subject: Seeking permission to promote public relations activities regarding ${String(
+          title
+        )} in the college.`,
+        90
       );
-      pdf3.text(40, 92, ` ${String(title)} in the college.`);
-      pdf3.text(
-        20,
-        110,
-        `ACM Student Chapter of VNRVJIET, in association with the Department of Information `
-      );
-      pdf3.text(
-        20,
-        120,
-        `Technology proposed to conduct ${String(title)} for ${String(
-          to_whom
-        )}. As a part of this event we `
-      );
-      pdf3.text(
-        20,
-        130,
-        `request you to grant permission for conducting PR in college on ${formatDate(
+      const lines2 = splitTextIntoLines(
+        `ACM Student Chapter of VNRVJIET, in association with the Department of Information Technology proposed to conduct ${String(
+          title
+        )} for ${String(to_whom)}. As a part of this event we request you to grant permission for conducting PR in college on ${formatDate(
           pr_date
-        )}.`
+        )}.`,
+        90
       );
+
+      let y = 82;
+      lines1.forEach((line) => {
+        pdf3.text(25, y, line);
+        y += 10;
+      });
+
+      y += 10; // Add some space between paragraphs
+      lines2.forEach((line) => {
+        pdf3.text(20, y, line);
+        y += 10;
+      });
 
       pdf3Blob = pdf3.output("blob");
     }
