@@ -8,10 +8,6 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const data = localStorage.getItem("auth").user;
 
-  if (!data) {
-    navigate("/login"); // Redirect to login page if not authenticated
-  }
-
   return (
     <>
       {data ? (
