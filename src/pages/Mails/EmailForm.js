@@ -11,12 +11,15 @@ import {
 } from "@mui/material";
 import { toast } from "react-toastify";
 import * as XLSX from "xlsx";
+import { Link } from "react-router-dom";
 
 const EmailForm = () => {
   const [formData, setFormData] = useState({
     subject: "",
     body: "",
   });
+  const data = localStorage.getItem("auth");
+
   const [fileData, setFileData] = useState(null);
   const [fileName, setFileName] = useState("");
 
@@ -76,56 +79,93 @@ const EmailForm = () => {
   };
 
   return (
-    <div className="flex justify-center items-center bg-gray-100">
-      <Box
-        sx={{
-          p: 4,
-          boxShadow: 3,
-          bgcolor: "background.paper",
-          borderRadius: 2,
-          width: "100%",
-          maxWidth: 800,
-        }}
-      >
-        <Typography variant="h5">Send Emails</Typography>
-        <form onSubmit={handleSubmit}>
-          <Box sx={{ display: "grid", gap: 2 }}>
-            <TextField
-              label="Subject"
-              name="subject"
-              value={formData.subject}
-              onChange={handleChange}
-              variant="standard"
-              fullWidth
-              size="small"
+    <>
+      {data ? (
+        <>
+          <div className="flex justify-center items-center bg-gray-100">
+            <Box
+              sx={{
+                p: 4,
+                boxShadow: 3,
+                bgcolor: "background.paper",
+                borderRadius: 2,
+                width: "100%",
+                maxWidth: 800,
+              }}
+            >
+              <Typography variant="h5">Send Emails</Typography>
+              <form onSubmit={handleSubmit}>
+                <Box sx={{ display: "grid", gap: 2 }}>
+                  <TextField
+                    label="Subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    variant="standard"
+                    fullWidth
+                    size="small"
+                  />
+                  <TextField
+                    label="Body"
+                    name="body"
+                    value={formData.body}
+                    onChange={handleChange}
+                    variant="standard"
+                    fullWidth
+                    size="small"
+                    multiline
+                    rows={4}
+                  />
+                  <Button variant="contained" component="label">
+                    Upload Excel File
+                    <input type="file" hidden onChange={handleFileChange} />
+                  </Button>
+                  {fileName && (
+                    <Typography variant="body1" sx={{ mt: 2 }}>
+                      Uploaded File: {fileName}
+                    </Typography>
+                  )}
+                  <Button type="submit" variant="contained" color="primary">
+                    Send Emails
+                  </Button>
+                </Box>
+              </form>
+            </Box>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="flex flex-row justify-center items-center">
+            <h1
+              style={{
+                fontFamily: "Poppins",
+                fontWeight: 400,
+                fontStyle: "normal",
+                textAlign: "center",
+                margin: 4,
+                fontSize: "30px",
+              }}
+            >
+              Please login to continue!
+              <br />
+              <Link
+                to="/login"
+                style={{ textDecoration: "underline", color: "#3893c2" }}
+              >
+                Click here
+              </Link>
+            </h1>
+            <img
+              src="/images/login.jpg"
+              alt=""
+              width="500px"
+              height="500px"
+              style={{ margin: 10 }}
             />
-            <TextField
-              label="Body"
-              name="body"
-              value={formData.body}
-              onChange={handleChange}
-              variant="standard"
-              fullWidth
-              size="small"
-              multiline
-              rows={4}
-            />
-            <Button variant="contained" component="label">
-              Upload Excel File
-              <input type="file" hidden onChange={handleFileChange} />
-            </Button>
-            {fileName && (
-              <Typography variant="body1" sx={{ mt: 2 }}>
-                Uploaded File: {fileName}
-              </Typography>
-            )}
-            <Button type="submit" variant="contained" color="primary">
-              Send Emails
-            </Button>
-          </Box>
-        </form>
-      </Box>
-    </div>
+          </div>
+        </>
+      )}
+    </>
   );
 };
 

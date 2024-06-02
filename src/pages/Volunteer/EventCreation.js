@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaLocationArrow } from "react-icons/fa";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Box, Typography, TextField, Button } from "@mui/material";
 import { toast } from "react-toastify";
 
@@ -72,154 +72,159 @@ const EventCreation = () => {
     console.log(formData);
   };
 
+  const data = localStorage.getItem("auth");
+
   return (
-    <div className="flex justify-center items-center bg-gray-100">
-      <Box
-        sx={{
-          p: 4,
-          boxShadow: 3,
-          bgcolor: "background.paper",
-          borderRadius: 2,
-          width: "100%",
-          maxWidth: 800,
-        }}
-      >
-        <Typography variant="h5">Create Event</Typography>
-        <form onSubmit={handleSubmit}>
-          <Box sx={{ display: "grid", gap: 2 }}>
-            <Box sx={{ display: "flex", gap: 2 }}>
-              <TextField
-                label="Event Title"
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
-                variant="standard"
-                fullWidth
-                size="small"
-              />
-              <TextField
-                label="Type of Event"
-                name="type"
-                value={formData.type}
-                onChange={handleChange}
-                variant="standard"
-                fullWidth
-                size="small"
-              />
-              <TextField
-                label="Target Audience"
-                name="to_whom"
-                value={formData.to_whom}
-                onChange={handleChange}
-                variant="standard"
-                fullWidth
-                size="small"
-              />
-              <TextField
-                label="Conducted By"
-                name="conductedBy"
-                value={formData.conductedBy}
-                onChange={handleChange}
-                variant="standard"
-                fullWidth
-                size="small"
-              />
-            </Box>
+    <>
+      {data ? (
+        <>
+          <div className="flex justify-center items-center bg-gray-100">
+            <Box
+              sx={{
+                p: 4,
+                boxShadow: 3,
+                bgcolor: "background.paper",
+                borderRadius: 2,
+                width: "100%",
+                maxWidth: 800,
+              }}
+            >
+              <Typography variant="h5">Create Event</Typography>
+              <form onSubmit={handleSubmit}>
+                <Box sx={{ display: "grid", gap: 2 }}>
+                  <Box sx={{ display: "flex", gap: 2 }}>
+                    <TextField
+                      label="Event Title"
+                      name="title"
+                      value={formData.title}
+                      onChange={handleChange}
+                      variant="standard"
+                      fullWidth
+                      size="small"
+                    />
+                    <TextField
+                      label="Type of Event"
+                      name="type"
+                      value={formData.type}
+                      onChange={handleChange}
+                      variant="standard"
+                      fullWidth
+                      size="small"
+                    />
+                    <TextField
+                      label="Target Audience"
+                      name="to_whom"
+                      value={formData.to_whom}
+                      onChange={handleChange}
+                      variant="standard"
+                      fullWidth
+                      size="small"
+                    />
+                    <TextField
+                      label="Conducted By"
+                      name="conductedBy"
+                      value={formData.conductedBy}
+                      onChange={handleChange}
+                      variant="standard"
+                      fullWidth
+                      size="small"
+                    />
+                  </Box>
 
-            <Box sx={{ display: "flex", gap: 2 }}>
-              <TextField
-                label="Date of Event"
-                type="date"
-                name="date"
-                value={formData.date}
-                onChange={handleChange}
-                variant="standard"
-                fullWidth
-                size="small"
-              />
-              <TextField
-                label="Time"
-                type="time"
-                name="time"
-                fullWidth
-                value={formData.time}
-                onChange={handleChange}
-                variant="standard"
-                size="small"
-              />
+                  <Box sx={{ display: "flex", gap: 2 }}>
+                    <TextField
+                      label="Date of Event"
+                      type="date"
+                      name="date"
+                      value={formData.date}
+                      onChange={handleChange}
+                      variant="standard"
+                      fullWidth
+                      size="small"
+                    />
+                    <TextField
+                      label="Time"
+                      type="time"
+                      name="time"
+                      fullWidth
+                      value={formData.time}
+                      onChange={handleChange}
+                      variant="standard"
+                      size="small"
+                    />
 
-              <TextField
-                label="Venue"
-                name="venue"
-                value={formData.venue}
-                onChange={handleChange}
-                variant="standard"
-                fullWidth
-                size="small"
-              />
-              <TextField
-                label="Resource Person"
-                name="resourcePerson"
-                value={formData.resourcePerson}
-                onChange={handleChange}
-                variant="standard"
-                fullWidth
-                size="small"
-              />
-            </Box>
-            <Box sx={{ display: "flex", gap: 2 }}>
-              <TextField
-                label="Mode of Conduct"
-                name="modeOfConduct"
-                value={formData.modeOfConduct}
-                onChange={handleChange}
-                variant="standard"
-                fullWidth
-                size="small"
-              />
+                    <TextField
+                      label="Venue"
+                      name="venue"
+                      value={formData.venue}
+                      onChange={handleChange}
+                      variant="standard"
+                      fullWidth
+                      size="small"
+                    />
+                    <TextField
+                      label="Resource Person"
+                      name="resourcePerson"
+                      value={formData.resourcePerson}
+                      onChange={handleChange}
+                      variant="standard"
+                      fullWidth
+                      size="small"
+                    />
+                  </Box>
+                  <Box sx={{ display: "flex", gap: 2 }}>
+                    <TextField
+                      label="Mode of Conduct"
+                      name="modeOfConduct"
+                      value={formData.modeOfConduct}
+                      onChange={handleChange}
+                      variant="standard"
+                      fullWidth
+                      size="small"
+                    />
 
-              <TextField
-                label="Resources Required"
-                name="resourcesRequired"
-                value={formData.resourcesRequired}
-                onChange={handleChange}
-                variant="standard"
-                fullWidth
-                size="small"
-              />
-              <TextField
-                label="Number of Volunteers"
-                type="number"
-                name="no_of_volunteers"
-                value={formData.no_of_volunteers}
-                fullWidth
-                onChange={handleChange}
-                variant="standard"
-                size="small"
-              />
-              <TextField
-                label="Prize Money"
-                type="number"
-                name="prize_money"
-                value={formData.prize_money}
-                onChange={handleChange}
-                variant="standard"
-                size="small"
-                fullWidth
-              />
-            </Box>
+                    <TextField
+                      label="Resources Required"
+                      name="resourcesRequired"
+                      value={formData.resourcesRequired}
+                      onChange={handleChange}
+                      variant="standard"
+                      fullWidth
+                      size="small"
+                    />
+                    <TextField
+                      label="Number of Volunteers"
+                      type="number"
+                      name="no_of_volunteers"
+                      value={formData.no_of_volunteers}
+                      fullWidth
+                      onChange={handleChange}
+                      variant="standard"
+                      size="small"
+                    />
+                    <TextField
+                      label="Prize Money"
+                      type="number"
+                      name="prize_money"
+                      value={formData.prize_money}
+                      onChange={handleChange}
+                      variant="standard"
+                      size="small"
+                      fullWidth
+                    />
+                  </Box>
 
-            <Box sx={{ display: "flex", gap: 2 }}>
-              <TextField
-                label="Budget"
-                type="number"
-                name="budget"
-                value={formData.budget}
-                onChange={handleChange}
-                variant="standard"
-                size="small"
-              />
-              {/* <TextField
+                  <Box sx={{ display: "flex", gap: 2 }}>
+                    <TextField
+                      label="Budget"
+                      type="number"
+                      name="budget"
+                      value={formData.budget}
+                      onChange={handleChange}
+                      variant="standard"
+                      size="small"
+                    />
+                    {/* <TextField
                 label="Registration Link"
                 type="text"
                 name="registration_link"
@@ -228,50 +233,84 @@ const EventCreation = () => {
                 variant="standard"
                 size="small"
               /> */}
-              <TextField
-                label="PR Dates"
-                type="text"
-                name="pr_date"
-                value={formData.pr_date}
-                onChange={handleChange}
-                variant="standard"
-                size="small"
-              />
-              <TextField
-                label="Created Date"
-                type="text"
-                name="feedback_link"
-                value={formData.current}
-                onChange={handleChange}
-                variant="standard"
-                size="small"
-              />
+                    <TextField
+                      label="PR Dates"
+                      type="text"
+                      name="pr_date"
+                      value={formData.pr_date}
+                      onChange={handleChange}
+                      variant="standard"
+                      size="small"
+                    />
+                    <TextField
+                      label="Created Date"
+                      type="text"
+                      name="feedback_link"
+                      value={formData.current}
+                      onChange={handleChange}
+                      variant="standard"
+                      size="small"
+                    />
+                  </Box>
+
+                  <TextField
+                    label="Remarks"
+                    name="remarks"
+                    value={formData.remarks}
+                    onChange={handleChange}
+                    variant="standard"
+                    fullWidth
+                    size="small"
+                    multiline
+                    rows={2}
+                  />
+
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    startIcon={<FaLocationArrow />}
+                  >
+                    Submit
+                  </Button>
+                </Box>
+              </form>
             </Box>
-
-            <TextField
-              label="Remarks"
-              name="remarks"
-              value={formData.remarks}
-              onChange={handleChange}
-              variant="standard"
-              fullWidth
-              size="small"
-              multiline
-              rows={2}
-            />
-
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              startIcon={<FaLocationArrow />}
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="flex flex-row justify-center items-center">
+            <h1
+              style={{
+                fontFamily: "Poppins",
+                fontWeight: 400,
+                fontStyle: "normal",
+                textAlign: "center",
+                margin: 4,
+                fontSize: "30px",
+              }}
             >
-              Submit
-            </Button>
-          </Box>
-        </form>
-      </Box>
-    </div>
+              Please login to continue!
+              <br />
+              <Link
+                to="/login"
+                style={{ textDecoration: "underline", color: "#3893c2" }}
+              >
+                Click here
+              </Link>
+            </h1>
+            <img
+              src="/images/login.jpg"
+              alt=""
+              width="500px"
+              height="500px"
+              style={{ margin: 10 }}
+            />
+          </div>
+        </>
+      )}
+    </>
   );
 };
 

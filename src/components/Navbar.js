@@ -19,7 +19,9 @@ export default function Navbar() {
     localStorage.removeItem("auth");
     navigate("/login"); // Redirect to the login page after logout
   };
-
+  const handleLogoLogin = () => {
+    navigate("/login");
+  };
   const handleLogo = () => {
     if (userRole == 0) navigate("/admin/dashboard");
     else navigate("/volunteer/dashboard");
@@ -28,26 +30,28 @@ export default function Navbar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" style={{ backgroundColor: "#3893c2" }}>
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-          >
-            <img
-              src="/images/ACM.png"
-              style={{ width: "40px", height: "40px" }}
-              alt="ACM Logo"
-              onClick={handleLogo}
-            />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            ACM VNRVJIET
-          </Typography>
           {!userRole ? (
-            <Link to="/login">
-              <Button color="inherit">Login</Button>
-            </Link>
+            <>
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+              >
+                <img
+                  src="/images/ACM.png"
+                  style={{ width: "40px", height: "40px" }}
+                  alt="ACM Logo"
+                  onClick={handleLogoLogin}
+                />
+              </IconButton>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                ACM VNRVJIET
+              </Typography>
+              <Link to="/login">
+                <Button color="inherit">Login</Button>
+              </Link>
+            </>
           ) : userRole === "0" ? (
             <>
               {/* <Link to="/admin/core">
@@ -68,6 +72,22 @@ export default function Navbar() {
             </>
           ) : (
             <>
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+              >
+                <img
+                  src="/images/ACM.png"
+                  style={{ width: "40px", height: "40px" }}
+                  alt="ACM Logo"
+                  onClick={handleLogo}
+                />
+              </IconButton>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                ACM VNRVJIET
+              </Typography>
               {/* <Link to="/volunteer/core">
                 <Button color="inherit"> Core</Button>
               </Link>

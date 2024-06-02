@@ -26,7 +26,7 @@ import VolunteerTable from "./pages/Volunteer/VolunteerTable";
 import MembershipTable from "./pages/Volunteer/MembershipTable";
 import Register from "./pages/Volunteer/Register";
 import EmailForm from "./pages/Mails/EmailForm";
-
+import File from "./pages/File";
 const App = () => {
   return (
     <>
@@ -34,6 +34,7 @@ const App = () => {
       <ToastContainer />
 
       <Routes>
+        <Route path="/file" element={<File />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         {/*admin side */}
