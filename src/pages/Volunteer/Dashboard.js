@@ -2,13 +2,13 @@
 import React from "react";
 import EventCard from "./EventCard";
 import { useAuth } from "../../context/auth";
-import { Redirect } from "react-router-dom"; // Ensure you have react-router-dom installed
+import { Redirect, useNavigate } from "react-router-dom"; // Ensure you have react-router-dom installed
 
 const Dashboard = () => {
   const { auth } = useAuth();
-
+  const navigate = useNavigate();
   if (!auth.token) {
-    return <Redirect to="/login" />; // Redirect to login page if not authenticated
+    navigate("/login"); // Redirect to login page if not authenticated
   }
 
   return (
