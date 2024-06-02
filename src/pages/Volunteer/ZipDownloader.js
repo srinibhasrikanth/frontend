@@ -132,8 +132,8 @@ const ZipDownloader = ({ item }) => {
           title
         )} for ${String(
           to_whom
-        )}. As a part of this event we request you to grant permission for conducting PR in college on ${formatDate(
-          String(pr_date)
+        )}. As a part of this event we request you to grant permission for conducting PR in college on ${String(
+          pr_date
         )}.`,
         90
       );
