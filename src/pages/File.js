@@ -15,7 +15,7 @@ const File = () => {
 
     try {
       const response = await axios.post(
-        "backend-production-c697.up.railway.app/api/upload-poster",
+        "https://backend-production-c697.up.railway.app/api/upload-poster",
         formData,
         {
           headers: {
