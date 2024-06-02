@@ -36,6 +36,7 @@ const ZipDownloader = ({ item }) => {
         prize_money,
         budget,
         remarks,
+        current,
       } = item.item;
       console.log(item.item);
       setTitleZip(item.item.title);
@@ -75,16 +76,16 @@ const ZipDownloader = ({ item }) => {
       pdf2.text(90, 198, String(resourcePerson));
       pdf2.text(90, 212, String(modeOfConduct));
       pdf2Blob = pdf2.output("blob");
-    }
 
-    const pdf3 = new jsPDF();
-    pdf3.setFontSize(16);
-    pdf3.setFont("helvetica", "normal");
-    pdf3.addImage("/images/Letter.png", "PNG", 0, 0, 200, 300);
-    pdf3.setFontSize(12);
-    pdf3.setFont("times", "normal");
-    pdf3.text(153, 75, String(current));
-    pdf3Blob = pdf3.output("blob");
+      const pdf3 = new jsPDF();
+      pdf3.setFontSize(16);
+      pdf3.setFont("helvetica", "normal");
+      pdf3.addImage("/images/Letter.png", "PNG", 0, 0, 200, 300);
+      pdf3.setFontSize(12);
+      pdf3.setFont("times", "normal");
+      pdf3.text(153, 75, String(current));
+      pdf3Blob = pdf3.output("blob");
+    }
 
     return { pdf1Blob, pdf2Blob, pdf3Blob };
   };
@@ -93,9 +94,9 @@ const ZipDownloader = ({ item }) => {
     const { pdf1Blob, pdf2Blob, pdf3Blob } = generatePDFs();
 
     const zip = new JSZip();
-    zip.file("pdf1.pdf", pdf1Blob);
-    zip.file("pdf2.pdf", pdf2Blob);
-    zip.file("pdf3.pdf", pdf3Blob);
+    zip.file("approval.pdf", pdf1Blob);
+    zip.file("circular.pdf", pdf2Blob);
+    zip.file("permission.pdf", pdf3Blob);
     zip.generateAsync({ type: "blob" }).then((content) => {
       saveAs(content, `${titleZip}.zip`);
     });
