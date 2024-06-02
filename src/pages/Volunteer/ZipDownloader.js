@@ -84,10 +84,10 @@ const ZipDownloader = ({ item }) => {
       pdf3.addImage("/images/Letter.png", "PNG", 0, 0, 200, 300);
       pdf3.setFontSize(12);
       pdf3.setFont("times", "normal");
-      pdf3.text(180, 60, String(current));
+      pdf3.text(160, 58, String(current));
       pdf3.text(
         40,
-        80,
+        83,
         ` Seeking permission to promote public relations activities regarding ${String(
           title
         )} in the college.`
@@ -119,6 +119,7 @@ const ZipDownloader = ({ item }) => {
     zip.file("approval.pdf", pdf1Blob);
     zip.file("circular.pdf", pdf2Blob);
     zip.file("permission.pdf", pdf3Blob);
+    console.log(titleZip);
     zip.generateAsync({ type: "blob" }).then((content) => {
       saveAs(content, `${titleZip}.zip`);
     });
