@@ -61,7 +61,7 @@ const App = () => {
         <Route path="/volunteer/:id" element={<EventDescription />} />
         <Route path="/register" element={<Register />} />
 
-        <Route path="/send-email" element={<EmailForm />} />
+        <Route path="/volunteer/send-email" element={<EmailForm />} />
       </Routes>
     </>
   );
