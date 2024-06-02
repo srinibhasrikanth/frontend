@@ -100,9 +100,9 @@ const ZipDownloader = ({ item }) => {
       pdf3.setFont("times", "normal");
       pdf3.text(170, 59, formatDate(current));
       pdf3.text(
-        40,
+        25,
         82,
-        ` Seeking permission to promote public relations activities regarding
+        ` Subject: Seeking permission to promote public relations activities regarding
         `
       );
       pdf3.text(40, 92, ` ${String(title)} in the college.`);
