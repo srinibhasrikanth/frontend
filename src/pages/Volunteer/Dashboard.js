@@ -7,7 +7,7 @@ import { Redirect, useNavigate } from "react-router-dom"; // Ensure you have rea
 const Dashboard = () => {
   const navigate = useNavigate();
   const data = localStorage.getItem("auth").user;
-
+  console.log(data);
   return (
     <>
       {data ? (
