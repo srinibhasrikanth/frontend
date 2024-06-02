@@ -38,7 +38,7 @@ const ZipDownloader = ({ item }) => {
         remarks,
       } = item.item;
       console.log(item.item);
-      setTitleZip(String(title));
+      setTitleZip(item.item.title);
 
       pdf1.text(90, 110, String(title));
       pdf1.text(90, 119, String(type));
