@@ -13,21 +13,27 @@ const Dashboard = () => {
   }
 
   return (
-    <div>
-      <h2
-        style={{
-          fontFamily: "Poppins",
-          fontWeight: 400,
-          fontStyle: "normal",
-          textAlign: "center",
-          margin: 4,
-          fontSize: "30px",
-        }}
-      >
-        Welcome to Volunteer Dashboard.
-      </h2>
-      <EventCard />
-    </div>
+    <>
+      {data ? (
+        <div>
+          <h2
+            style={{
+              fontFamily: "Poppins",
+              fontWeight: 400,
+              fontStyle: "normal",
+              textAlign: "center",
+              margin: 4,
+              fontSize: "30px",
+            }}
+          >
+            Welcome to Volunteer Dashboard.
+          </h2>
+          <EventCard />
+        </div>
+      ) : (
+        <h1>hello</h1>
+      )}
+    </>
   );
 };
 
