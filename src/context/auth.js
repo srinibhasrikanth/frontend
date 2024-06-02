@@ -27,8 +27,9 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     axios.defaults.headers.common["Authorization"] = auth?.token;
   }, [auth.token]);
-
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const logout = () => {
+    setIsAuthenticated(false);
     setAuth({
       user: null,
       token: "",

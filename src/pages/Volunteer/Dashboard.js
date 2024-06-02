@@ -5,9 +5,10 @@ import { useAuth } from "../../context/auth";
 import { Redirect, useNavigate } from "react-router-dom"; // Ensure you have react-router-dom installed
 
 const Dashboard = () => {
-  const { auth } = useAuth();
   const navigate = useNavigate();
-  if (!auth.user) {
+  const { isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) {
     navigate("/login"); // Redirect to login page if not authenticated
   }
 
