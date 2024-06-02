@@ -12,9 +12,9 @@ const MembershipList = () => {
         const res = await axios.get(
           "https://backend-production-c697.up.railway.app/api/v1/members/get-membership"
         );
-        console.log(res.data.coreMembers);
+        console.log(res.data.members);
 
-        setCore(res.data.coreMembers);
+        setCore(res.data.members);
       } catch (error) {
         toast.error("Something went wrong");
       }
@@ -24,7 +24,9 @@ const MembershipList = () => {
 
   return (
     <div className="m-5 p-5">
-      <h1 className="text-2xl font-bold mb-4 text-center">Core Team</h1>
+      <h1 className="text-2xl font-bold mb-4 text-center">
+        Membership Details
+      </h1>
       <table className="min-w-full bg-white border border-gray-300 shadow-md rounded-md overflow-hidden">
         <thead className="bg-[#3893c2] text-white">
           <tr>

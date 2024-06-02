@@ -24,6 +24,8 @@ import CoreList from "./pages/Volunteer/CoreList";
 import CoreTable from "./pages/Volunteer/CoreTable";
 import VolunteerTable from "./pages/Volunteer/VolunteerTable";
 import MembershipTable from "./pages/Volunteer/MembershipTable";
+import Register from "./pages/Volunteer/Register";
+import EmailForm from "./pages/Mails/EmailForm";
 
 const App = () => {
   return (
@@ -57,6 +59,9 @@ const App = () => {
         />
         <Route path="/volunteer/event-creation" element={<EventCreation />} />
         <Route path="/volunteer/:id" element={<EventDescription />} />
+        <Route path="/register" element={<Register />} />
+
+        <Route path="/send-email" element={<EmailForm />} />
       </Routes>
     </>
   );

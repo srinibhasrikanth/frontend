@@ -17,6 +17,7 @@ const ZipDownloader = ({ item }) => {
 
     let pdf1Blob = null;
     let pdf2Blob = null;
+    let pdf3Blob = null;
 
     if (item.item) {
       const {
@@ -74,7 +75,16 @@ const ZipDownloader = ({ item }) => {
       pdf2Blob = pdf2.output("blob");
     }
 
-    return { pdf1Blob, pdf2Blob };
+    const pdf3 = new jsPDF();
+    pdf3.setFontSize(16);
+    pdf3.setFont("helvetica", "normal");
+    pdf3.addImage("/images/header.png", "PNG", 0, 0, 200, 300);
+    pdf3.setFontSize(12);
+    pdf3.setFont("times", "normal");
+    pdf3.text(153, 75, "09-09-2024");
+    pdf3Blob = pdf3.output("blob");
+
+    return { pdf1Blob, pdf2Blob, pdf3Blob };
   };
 
   const createAndDownloadZip = () => {

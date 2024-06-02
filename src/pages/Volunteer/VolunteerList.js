@@ -23,7 +23,7 @@ const VolunteerList = ({ batch }) => {
 
   return (
     <div className="m-5 p-5">
-      <h1 className="text-2xl font-bold mb-4 text-center">Core Team</h1>
+      <h1 className="text-2xl font-bold mb-4 text-center">Volunteer</h1>
       <table className="min-w-full bg-white border border-gray-300 shadow-md rounded-md overflow-hidden">
         <thead className="bg-[#3893c2] text-white">
           <tr>

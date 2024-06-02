@@ -39,10 +39,13 @@ const EventCreation = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
-        "https://backend-production-c697.up.railway.app/api/v1/events/create-event",
+      const res = await axios.post(
+        // "https://backend-production-c697.up.railway.app/api/v1/events/create-event"
+        "http://localhost:8080/api/v1/events/create-event",
         formData
       );
+
+      console.log(res);
 
       toast.success("Event is successfully created");
       navigate("/volunteer/dashboard");
