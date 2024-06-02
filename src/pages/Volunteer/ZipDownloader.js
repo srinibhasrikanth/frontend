@@ -88,14 +88,14 @@ const ZipDownloader = ({ item }) => {
   };
 
   const createAndDownloadZip = () => {
-    const { pdf1Blob, pdf2Blob } = generatePDFs();
+    const { pdf1Blob, pdf2Blob, pdf3Blob } = generatePDFs();
 
     const zip = new JSZip();
     zip.file("pdf1.pdf", pdf1Blob);
     zip.file("pdf2.pdf", pdf2Blob);
-
+    zip.file("pdf3.pdf", pdf3Blob);
     zip.generateAsync({ type: "blob" }).then((content) => {
-      saveAs(content, "pdfs.zip");
+      saveAs(content, `${title}.zip`);
     });
   };
 
