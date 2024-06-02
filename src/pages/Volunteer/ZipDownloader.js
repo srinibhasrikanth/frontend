@@ -242,13 +242,13 @@ const ZipDownloader = ({ item }) => {
   const qrCode = async () => {
     // Generate QR code data URL
     const qrCodeDataURL = await QRCode.toDataURL(
-      `https://frontend-nu-flame-39.vercel.app/${item.item._id}`
+      `https://frontend-nu-flame-39.vercel.app/register/${item.item._id}`
     );
 
     // Save the QR code as a PNG
     saveAs(qrCodeDataURL, `${item.item.title}_registration.png`);
   };
-  const link_reg = `https://frontend-nu-flame-39.vercel.app/${item.item._id}`;
+  const link_reg = `https://frontend-nu-flame-39.vercel.app/register/${item.item._id}`;
 
   return (
     <div>
