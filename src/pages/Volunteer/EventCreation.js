@@ -28,8 +28,8 @@ const EventCreation = () => {
     budget: "",
     remarks: "",
     current: `${month}/${date}/${year}`,
-    registration_link: "",
-    feedback_link: "",
+
+    pr_date: "",
   });
 
   const handleChange = (e) => {
@@ -63,6 +63,7 @@ const EventCreation = () => {
         prize_money: "",
         budget: "",
         remarks: "",
+        pr_date: "",
       });
     } catch (error) {
       toast.error("Error in creating an event");
@@ -218,7 +219,7 @@ const EventCreation = () => {
                 variant="standard"
                 size="small"
               />
-              <TextField
+              {/* <TextField
                 label="Registration Link"
                 type="text"
                 name="registration_link"
@@ -226,12 +227,12 @@ const EventCreation = () => {
                 onChange={handleChange}
                 variant="standard"
                 size="small"
-              />
+              /> */}
               <TextField
-                label="Feedback Link"
+                label="PR Dates"
                 type="text"
-                name="feedback_link"
-                value={formData.feedback_link}
+                name="pr_date"
+                value={formData.pr_date}
                 onChange={handleChange}
                 variant="standard"
                 size="small"

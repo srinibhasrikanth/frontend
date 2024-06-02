@@ -84,6 +84,27 @@ const ZipDownloader = ({ item }) => {
       pdf3.setFontSize(12);
       pdf3.setFont("times", "normal");
       pdf3.text(180, 60, String(current));
+      pdf3.text(
+        20,
+        60,
+        `Subject: Seeking permission to promote public relations activities regarding ${String(
+          title
+        )} in the college.`
+      );
+      pdf3.text(
+        20,
+        70,
+        `ACM Student Chapter of VNRVJIET, in association with the Department of Information Technology `
+      );
+      pdf3.text(
+        20,
+        80,
+        `proposed to conduct ${String(title)} for ${String(
+          to_whom
+        )}. As a part of this event we request you to grant permission`
+      );
+      pdf3.text(20, 90, `for conducting PR in college on ${String(date)}.`);
+
       pdf3Blob = pdf3.output("blob");
     }
 
