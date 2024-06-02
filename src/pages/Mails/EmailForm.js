@@ -55,7 +55,7 @@ const EmailForm = () => {
 
     try {
       await axios.post(
-        "http://localhost:8080/send-emails",
+        "https://backend-production-c697.up.railway.app/send-emails",
         {
           subject: formData.subject,
           body: formData.body,
@@ -124,7 +124,6 @@ const EmailForm = () => {
             </Button>
           </Box>
         </form>
-       
       </Box>
     </div>
   );
