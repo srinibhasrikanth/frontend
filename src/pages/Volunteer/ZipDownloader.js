@@ -202,13 +202,13 @@ const ZipDownloader = ({ item }) => {
 
       let ya = 82;
       lines1a.forEach((line) => {
-        pdf4.text(25, y, line);
-        y += 10;
+        pdf4.text(25, ya, line);
+        ya += 10;
       });
 
       ya += 10; // Add some space between paragraphs
       lines2a.forEach((line) => {
-        pdf4.text(20, y, line);
+        pdf4.text(20, ya, line);
         ya += 10;
       });
 
@@ -219,7 +219,7 @@ const ZipDownloader = ({ item }) => {
   };
 
   const createAndDownloadZip = () => {
-    const { pdf1Blob, pdf2Blob, pdf3Blob } = generatePDFs();
+    const { pdf1Blob, pdf2Blob, pdf3Blob, pdf4Blob } = generatePDFs();
 
     const zip = new JSZip();
     zip.file("approval.pdf", pdf1Blob);
