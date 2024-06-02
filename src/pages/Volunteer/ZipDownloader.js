@@ -3,9 +3,12 @@ import jsPDF from "jspdf";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { Button } from "@mui/material";
+import QRCode from "qrcode";
+import { Link } from "react-router-dom";
 
 const ZipDownloader = ({ item }) => {
   const [titleZip, setTitleZip] = useState("");
+  const [id, setId] = useState("");
 
   // Utility function to format dates
   const formatDate = (dateString) => {
@@ -16,7 +19,7 @@ const ZipDownloader = ({ item }) => {
     return `${day}-${month}-${year}`;
   };
 
-  const generatePDFs = () => {
+  const generatePDFs = async () => {
     // Default date for demonstration
     const defaultDate = formatDate("2024-09-09");
 
@@ -55,6 +58,7 @@ const ZipDownloader = ({ item }) => {
       } = item.item;
       console.log(item.item);
       setTitleZip(item.item.title);
+      setId(item.item._id);
 
       pdf1.text(90, 110, String(title));
       pdf1.text(90, 119, String(type));
@@ -218,19 +222,33 @@ const ZipDownloader = ({ item }) => {
     return { pdf1Blob, pdf2Blob, pdf3Blob, pdf4Blob };
   };
 
-  const createAndDownloadZip = () => {
+  const createAndDownloadZip = async () => {
     const { pdf1Blob, pdf2Blob, pdf3Blob, pdf4Blob } = generatePDFs();
 
     const zip = new JSZip();
+
     zip.file("approval.pdf", pdf1Blob);
     zip.file("circular.pdf", pdf2Blob);
     zip.file("pr_permission.pdf", pdf3Blob);
     zip.file("venue_permission.pdf", pdf4Blob);
     console.log(titleZip);
-    zip.generateAsync({ type: "blob" }).then((content) => {
-      saveAs(content, `${titleZip}.zip`);
-    });
+    // Generate async zip content
+    const zipBlob = await zip.generateAsync({ type: "blob" });
+
+    // Save the zip file
+    saveAs(zipBlob, `${titleZip}.zip`);
   };
+
+  const qrCode = async () => {
+    // Generate QR code data URL
+    const qrCodeDataURL = await QRCode.toDataURL(
+      `https://frontend-nu-flame-39.vercel.app/${item.item._id}`
+    );
+
+    // Save the QR code as a PNG
+    saveAs(qrCodeDataURL, `${item.item.title}_registration.png`);
+  };
+  const link_reg = `https://frontend-nu-flame-39.vercel.app/${item.item._id}`;
 
   return (
     <div>
@@ -241,6 +259,16 @@ const ZipDownloader = ({ item }) => {
       >
         Download ZIP of PDFs
       </Button>
+      <Link
+        to={link_reg}
+        style={{ textDecoration: "underline" }}
+        onClick={qrCode}
+      >
+        Download Registration QR
+      </Link>
+      {/* <Button variant="contained" color="primary" onClick={qrCode}>
+        Download Registration QR
+      </Button> */}
     </div>
   );
 };

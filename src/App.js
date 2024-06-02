@@ -60,7 +60,7 @@ const App = () => {
         />
         <Route path="/volunteer/event-creation" element={<EventCreation />} />
         <Route path="/volunteer/:id" element={<EventDescription />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register/:id" element={<Register />} />
 
         <Route path="/volunteer/send-email" element={<EmailForm />} />
       </Routes>

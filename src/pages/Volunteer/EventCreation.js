@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Box, Typography, TextField, Button } from "@mui/material";
 import { toast } from "react-toastify";
+import QRCode from "qrcode";
 
 const EventCreation = () => {
   const navigate = useNavigate();
@@ -28,7 +29,6 @@ const EventCreation = () => {
     budget: "",
     remarks: "",
     current: `${month}/${date}/${year}`,
-
     pr_date: "",
   });
 
@@ -39,15 +39,29 @@ const EventCreation = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Send form data to create event
       const res = await axios.post(
         "https://backend-production-c697.up.railway.app/api/v1/events/create-event",
         formData
       );
 
-      console.log(res);
+      // Generate QR code
+      const link = `https://frontend-nu-flame-39.vercel.app/register/${res.data._id}`;
+      const qrCodeDataURL = await QRCode.toDataURL(link);
 
-      toast.success("Event is successfully created");
-      navigate("/volunteer/dashboard");
+      // Create a temporary anchor element to download the QR code
+      const downloadLink = document.createElement("a");
+      downloadLink.href = qrCodeDataURL;
+      downloadLink.download = `${formData.title}`;
+      document.body.appendChild(downloadLink);
+
+      // Trigger download of QR code
+      downloadLink.click();
+
+      // Cleanup: remove the temporary anchor element
+      document.body.removeChild(downloadLink);
+
+      // Reset form data
       setFormData({
         title: "",
         type: "",
@@ -65,11 +79,13 @@ const EventCreation = () => {
         remarks: "",
         pr_date: "",
       });
+
+      toast.success("Event is successfully created");
+      navigate("/volunteer/dashboard");
     } catch (error) {
       toast.error("Error in creating an event");
       console.error("Error saving event:", error);
     }
-    console.log(formData);
   };
 
   const data = localStorage.getItem("auth");
@@ -224,15 +240,6 @@ const EventCreation = () => {
                       variant="standard"
                       size="small"
                     />
-                    {/* <TextField
-                label="Registration Link"
-                type="text"
-                name="registration_link"
-                value={formData.registration_link}
-                onChange={handleChange}
-                variant="standard"
-                size="small"
-              /> */}
                     <TextField
                       label="PR Dates"
                       type="text"
