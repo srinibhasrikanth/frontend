@@ -95,33 +95,35 @@ const ZipDownloader = ({ item }) => {
       const pdf3 = new jsPDF();
       pdf3.setFontSize(16);
       pdf3.setFont("helvetica", "normal");
-      pdf3.addImage("/images/Letter.png", "PNG", 0, 0, 200, 300);
+      pdf3.addImage("/images/pr_permission.png", "PNG", 0, 0, 200, 300);
       pdf3.setFontSize(14);
       pdf3.setFont("times", "normal");
       pdf3.text(170, 59, formatDate(current));
       pdf3.text(
         40,
         82,
-        ` Seeking permission to promote public relations activities regarding ${String(
-          title
-        )} in the college.`
+        ` Seeking permission to promote public relations activities regarding
+        `
       );
+      pdf3.text(40, 92, ` ${String(title)} in the college.`);
       pdf3.text(
         20,
         110,
-        `ACM Student Chapter of VNRVJIET, in association with the Department of Information Technology `
+        `ACM Student Chapter of VNRVJIET, in association with the Department of Information `
       );
       pdf3.text(
         20,
         120,
-        `proposed to conduct ${String(title)} for ${String(
+        `Technology proposed to conduct ${String(title)} for ${String(
           to_whom
-        )}. As a part of this event we request you to grant permission`
+        )}. As a part of this event we `
       );
       pdf3.text(
         20,
         130,
-        `for conducting PR in college on ${formatDate(pr_date)}.`
+        `request you to grant permission for conducting PR in college on ${formatDate(
+          pr_date
+        )}.`
       );
 
       pdf3Blob = pdf3.output("blob");
