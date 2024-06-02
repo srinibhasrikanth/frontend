@@ -50,7 +50,7 @@ export default function Navbar() {
             </Link>
           ) : userRole === "0" ? (
             <>
-              <Link to="/admin/core">
+              {/* <Link to="/admin/core">
                 <Button color="inherit">Core</Button>
               </Link>
               <Link to="/admin/membership">
@@ -58,6 +58,9 @@ export default function Navbar() {
               </Link>
               <Link to="/admin/volunteers">
                 <Button color="inherit">Volunteers</Button>
+              </Link> */}
+              <Link to="/volunteer/send-email">
+                <Button color="inherit">Send Email</Button>
               </Link>
               <Button color="inherit" onClick={handleLogout}>
                 Logout
@@ -65,7 +68,7 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Link to="/volunteer/core">
+              {/* <Link to="/volunteer/core">
                 <Button color="inherit"> Core</Button>
               </Link>
               <Link to="/volunteer/volunteer">
@@ -73,6 +76,9 @@ export default function Navbar() {
               </Link>
               <Link to="/volunteer/membership">
                 <Button color="inherit"> Membership</Button>
+              </Link> */}
+              <Link to="/volunteer/send-email">
+                <Button color="inherit">Send Email</Button>
               </Link>
               <Link to="/volunteer/event-creation">
                 <Button color="inherit">Add Event</Button>
