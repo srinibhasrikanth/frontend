@@ -80,10 +80,10 @@ const ZipDownloader = ({ item }) => {
     const pdf3 = new jsPDF();
     pdf3.setFontSize(16);
     pdf3.setFont("helvetica", "normal");
-    pdf3.addImage("/images/header.png", "PNG", 0, 0, 200, 300);
+    pdf3.addImage("/images/Letter.png", "PNG", 0, 0, 200, 300);
     pdf3.setFontSize(12);
     pdf3.setFont("times", "normal");
-    pdf3.text(153, 75, "09-09-2024");
+    pdf3.text(153, 75, String(current));
     pdf3Blob = pdf3.output("blob");
 
     return { pdf1Blob, pdf2Blob, pdf3Blob };
