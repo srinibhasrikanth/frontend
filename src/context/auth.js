@@ -28,14 +28,14 @@ const AuthProvider = ({ children }) => {
     axios.defaults.headers.common["Authorization"] = auth?.token;
   }, [auth.token]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   const logout = () => {
-    setIsAuthenticated(false);
     setAuth({
       user: null,
       token: "",
     });
-
     localStorage.removeItem("auth");
+    setIsAuthenticated(false);
   };
 
   return (
