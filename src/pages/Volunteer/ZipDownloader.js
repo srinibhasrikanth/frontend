@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import jsPDF from "jspdf";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { Button } from "@mui/material";
 
 const ZipDownloader = ({ item }) => {
+  const [titleZip, setTitleZip] = useState("");
   const generatePDFs = () => {
     //approval form
     const pdf1 = new jsPDF();
@@ -37,6 +38,7 @@ const ZipDownloader = ({ item }) => {
         remarks,
       } = item.item;
       console.log(item.item);
+      setTitleZip(String(title));
 
       pdf1.text(90, 110, String(title));
       pdf1.text(90, 119, String(type));
@@ -95,7 +97,7 @@ const ZipDownloader = ({ item }) => {
     zip.file("pdf2.pdf", pdf2Blob);
     zip.file("pdf3.pdf", pdf3Blob);
     zip.generateAsync({ type: "blob" }).then((content) => {
-      saveAs(content, `${item.title}.zip`);
+      saveAs(content, `${titleZip}.zip`);
     });
   };
 
