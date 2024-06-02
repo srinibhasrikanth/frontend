@@ -30,7 +30,7 @@ const File = () => {
       console.error("Error uploading file:", error);
     }
   };
-
+  console.log(posterURL);
   return (
     <div>
       <input type="file" onChange={handleFileChange} />
