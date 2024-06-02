@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 const File = () => {
   const [poster, setPoster] = useState(null);
   const [posterURL, setPosterURL] = useState("");
@@ -22,8 +23,10 @@ const File = () => {
           },
         }
       );
+      toast.success("Successfully uploaded");
       setPosterURL(response.data.filePath);
     } catch (error) {
+      toast.error("Error in uploading file");
       console.error("Error uploading file:", error);
     }
   };
