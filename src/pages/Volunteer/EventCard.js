@@ -3,90 +3,92 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import ZipDownloader from "./ZipDownloader";
-
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import { IconButton, Menu } from "@mui/material";
+import { useState } from "react";
 export default function EventCard() {
   const [result, setResult] = React.useState([]);
   const navigate = useNavigate();
-
   const fetchEvent = async () => {
     try {
       const res = await axios.get(
         "https://backend-production-c697.up.railway.app/api/v1/events/get-all-events"
       );
-      setResult(res.data); // Set state with the data, not the entire response
+      setResult(res.data);
     } catch (error) {
       console.log(error);
     }
   };
 
   React.useEffect(() => {
-    fetchEvent(); // Fetch data on component mount
-  }, []); // Empty dependency array to avoid infinite loop
+    fetchEvent();
+  }, []);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
 
-  console.log(result); // Log the result to debug
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
-    <div className="flex flex-row flex-wrap">
+    <div
+      className="flex flex-row flex-wrap"
+      style={{ justifyContent: "space-between" }}
+    >
       {Array.isArray(result) && result.length > 0 ? (
         result.map((item, index) => (
-          <Card sx={{ width: 300, margin: 3 }} key={index}>
+          <Card sx={{ width: 350, margin: 3 }} key={index}>
             <CardContent>
-              <Typography sx={{ fontSize: 14 }}></Typography>
-              <Typography variant="h6" component="div">
-                {item.title}
-                <br />
-                {item.type}
-              </Typography>
-              <Typography variant="body2">
-                Date: {item.date}
-                <br />
-                Time: {item.time}
-                <br />
-                Venue: {item.venue}
-                <br />
-                {/* Mode of Conduct: {item.modeOfConduct} */}
-              </Typography>
-              {/* <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                {item.to_whom}
-              </Typography> */}
-              {/* <Typography variant="body2">
-                Date: {item.date}
-                <br />
-                Time: {item.time}
-                <br />
-                Venue: {item.venue}
-                <br />
-                Resource Person: {item.resourcePerson}
-                <br />
-                Mode of Conduct: {item.modeOfConduct}
-                <br />
-                Resources Required: {item.resourcesRequired}
-                <br />
-                Conducted By: {item.conductedBy}
-                <br />
-                Number of Volunteers: {item.no_of_volunteers}
-                <br />
-                Prize Money: {item.prize_money}
-                <br />
-                Budget: {item.budget}
-                <br />
-                Remarks: {item.remarks}
-              </Typography> */}
-              <CardActions>
-                <ZipDownloader item={{ item }} />
-              </CardActions>
+              <div className="flex" style={{ justifyContent: "space-between" }}>
+                <div style={{ justifyContent: "space-between" }}>
+                  <Typography variant="h6" component="div">
+                    {item.title}
+                    <br />
+                    {item.type}
+                  </Typography>
+                  <Typography variant="body2">
+                    Date: {item.date}
+                    <br />
+                    Time: {item.time}
+                    <br />
+                    Venue: {item.venue}
+                    <br />
+                  </Typography>
+                </div>
+                <div>
+                  <CardActions>
+                    <ZipDownloader item={{ item }} />
+                  </CardActions>
+                </div>
+              </div>
             </CardContent>
           </Card>
         ))
       ) : (
-        <Typography variant="body2" color="text.secondary">
-          No events available
-        </Typography>
+        <>
+          <div className="flex flex-row" style={{ justifyContent: "center" }}>
+            <img src="/images/noEventsFound.jpg" width="600vh" height="60vh" />
+            <Typography
+              variant="h4"
+              color="text.secondary"
+              style={{ textAlign: "center" }}
+            >
+              No events available. <br />
+            </Typography>
+          </div>
+        </>
       )}
     </div>
   );

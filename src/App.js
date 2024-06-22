@@ -8,13 +8,7 @@ import Dashboard from "./pages/Volunteer/Dashboard";
 import PermissionLetterPdf from "./pages/Volunteer/PermissionLetterPdf";
 import EventCreation from "./pages/Volunteer/EventCreation";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Core from "./pages/Admin/Core";
-import Memberships from "./pages/Admin/Memberships";
-import Volunteers from "./pages/Admin/Volunteers";
-import Events from "./pages/Admin/Events";
-import Letters from "./pages/Admin/Letters";
-import EventCard from "./pages/Volunteer/EventCard";
+
 import EventDescription from "./pages/Volunteer/EventDescription";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -27,6 +21,10 @@ import MembershipTable from "./pages/Volunteer/MembershipTable";
 import Register from "./pages/Volunteer/Register";
 import EmailForm from "./pages/Mails/EmailForm";
 import File from "./pages/File";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
+import Team from "./pages/Auth/Team";
+import EventTable from "./pages/Events/EventTable";
+import EventRegistrations from "./pages/Events/EventRegistrations";
 const App = () => {
   return (
     <>
@@ -37,13 +35,19 @@ const App = () => {
         <Route path="/file" element={<File />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
+
         {/*admin side */}
-        <Route path="/admin/core" element={<Core />} />
-        <Route path="/admin/membership" element={<Memberships />} />
-        <Route path="/admin/volunteers" element={<Volunteers />} />
-        <Route path="/admin/events" element={<Events />} />
-        <Route path="/admin/letters" element={<Letters />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/event-list" element={<EventTable />} />
+        <Route path="/admin/team" element={<Team />} />
+        <Route
+          path="/admin/registration-list/:id"
+          element={<EventRegistrations />}
+        />
+        <Route path="/admin/send-email" element={<EmailForm />} />
         {/* volunteer side */}
+        <Route path="/volunteer/team" element={<Team />} />
+        <Route path="/volunteer/event-list" element={<EventTable />} />
         <Route path="/volunteer/add-core" element={<AddCoreList />} />
         <Route path="/volunteer/core" element={<CoreTable />} />
         <Route path="/volunteer/volunteer" element={<VolunteerTable />} />
@@ -61,7 +65,10 @@ const App = () => {
         <Route path="/volunteer/event-creation" element={<EventCreation />} />
         <Route path="/volunteer/:id" element={<EventDescription />} />
         <Route path="/register/:id" element={<Register />} />
-
+        <Route
+          path="/volunteer/registration-list/:id"
+          element={<EventRegistrations />}
+        />
         <Route path="/volunteer/send-email" element={<EmailForm />} />
       </Routes>
     </>

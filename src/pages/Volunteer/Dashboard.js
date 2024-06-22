@@ -1,8 +1,8 @@
 // Dashboard.js
 import React from "react";
 import EventCard from "./EventCard";
-import { useAuth } from "../../context/auth";
-import { Link, Redirect, useNavigate } from "react-router-dom"; // Ensure you have react-router-dom installed
+
+import { Link, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -11,19 +11,20 @@ const Dashboard = () => {
   return (
     <>
       {data ? (
-        <div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
           <h2
             style={{
               fontFamily: "Poppins",
               fontWeight: 400,
               fontStyle: "normal",
               textAlign: "center",
-              margin: 4,
+              margin: "10px",
               fontSize: "30px",
             }}
           >
             Welcome to Volunteer Dashboard.
           </h2>
+
           <EventCard />
         </div>
       ) : (
@@ -47,7 +48,13 @@ const Dashboard = () => {
               Click here
             </Link>
           </h1>
-          <img src="/images/login.jpg" alt="" width="500px" height="500px" style={{margin:10}} />
+          <img
+            src="/images/login.jpg"
+            alt=""
+            width="500px"
+            height="500px"
+            style={{ margin: 10 }}
+          />
         </div>
       )}
     </>

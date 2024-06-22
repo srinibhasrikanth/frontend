@@ -1,8 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { TextField, Button, Typography, Container } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Typography,
+  Container,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import { toast } from "react-toastify";
+
 const Register = () => {
   const { id } = useParams(); // Event ID from the URL
   const [data, setData] = useState();
@@ -106,42 +116,70 @@ const Register = () => {
             value={formData.rollNumber}
             onChange={handleChange}
           />
-          <TextField
+          <FormControl
             variant="outlined"
-            required
             fullWidth
-            id="branch"
-            label="Branch"
-            name="branch"
             style={{ marginBottom: "16px" }}
             size="small"
-            value={formData.branch}
-            onChange={handleChange}
-          />
-          <TextField
+          >
+            <InputLabel id="branch-label">Branch</InputLabel>
+            <Select
+              labelId="branch-label"
+              id="branch"
+              name="branch"
+              value={formData.branch}
+              onChange={handleChange}
+              label="Branch"
+            >
+              <MenuItem value="CSE">CSE</MenuItem>
+              <MenuItem value="ECE">ECE</MenuItem>
+              <MenuItem value="Mech">Mech</MenuItem>
+              {/* Add more branches as needed */}
+            </Select>
+          </FormControl>
+          <FormControl
             variant="outlined"
-            required
             fullWidth
-            id="year"
-            label="Year"
-            name="year"
             style={{ marginBottom: "16px" }}
             size="small"
-            value={formData.year}
-            onChange={handleChange}
-          />
-          <TextField
+          >
+            <InputLabel id="year-label">Year</InputLabel>
+            <Select
+              labelId="year-label"
+              id="year"
+              name="year"
+              value={formData.year}
+              onChange={handleChange}
+              label="Year"
+            >
+              <MenuItem value="1">1</MenuItem>
+              <MenuItem value="2">2</MenuItem>
+              <MenuItem value="3">3</MenuItem>
+              <MenuItem value="4">4</MenuItem>
+              {/* Adjust as per your academic year structure */}
+            </Select>
+          </FormControl>
+          <FormControl
             variant="outlined"
-            required
             fullWidth
-            id="section"
-            label="Section"
-            name="section"
             style={{ marginBottom: "16px" }}
             size="small"
-            value={formData.section}
-            onChange={handleChange}
-          />
+          >
+            <InputLabel id="section-label">Section</InputLabel>
+            <Select
+              labelId="section-label"
+              id="section"
+              name="section"
+              value={formData.section}
+              onChange={handleChange}
+              label="Section"
+            >
+              <MenuItem value="A">A</MenuItem>
+              <MenuItem value="B">B</MenuItem>
+              <MenuItem value="C">C</MenuItem>
+              {/* Add more sections as needed */}
+            </Select>
+          </FormControl>
           <TextField
             variant="outlined"
             required
@@ -173,7 +211,7 @@ const Register = () => {
             color="primary"
             style={{ marginTop: "8px" }}
           >
-            Sign Up
+            Register Now
           </Button>
         </form>
       </div>

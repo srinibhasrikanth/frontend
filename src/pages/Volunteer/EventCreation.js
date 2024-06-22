@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Box, Typography, TextField, Button } from "@mui/material";
 import { toast } from "react-toastify";
 import QRCode from "qrcode";
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 
 const EventCreation = () => {
   const navigate = useNavigate();
@@ -87,14 +88,24 @@ const EventCreation = () => {
       console.error("Error saving event:", error);
     }
   };
-
+  const storedAuth = localStorage.getItem("auth");
+  const userRole = storedAuth ? JSON.parse(storedAuth).user.role : null;
   const data = localStorage.getItem("auth");
-
+  let event;
+  if (userRole == "1") event = "/volunteer/dashboard";
+  else event = "/admin/dashboard";
   return (
     <>
+      <Typography style={{ margin: 5 }}>
+        {" "}
+        <Link to={`${event}`}>
+          <KeyboardDoubleArrowLeftIcon />
+          <span>Back to dashboard</span>
+        </Link>
+      </Typography>
       {data ? (
         <>
-          <div className="flex justify-center items-center bg-gray-100">
+          <div className="flex justify-center items-center m-10 pt-6">
             <Box
               sx={{
                 p: 4,

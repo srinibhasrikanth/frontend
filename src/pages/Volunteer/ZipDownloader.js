@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import jsPDF from "jspdf";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
-import { Button } from "@mui/material";
+import { Button, IconButton, Menu, MenuItem } from "@mui/material";
 import QRCode from "qrcode";
 import { Link } from "react-router-dom";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const ZipDownloader = ({ item }) => {
   const [titleZip, setTitleZip] = useState("");
   const [id, setId] = useState("");
 
-  // Utility function to format dates
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const day = String(date.getDate()).padStart(2, "0");
@@ -20,10 +20,7 @@ const ZipDownloader = ({ item }) => {
   };
 
   const generatePDFs = async () => {
-    // Default date for demonstration
     const defaultDate = formatDate("2024-09-09");
-
-    // approval form
     const pdf1 = new jsPDF();
     pdf1.setFontSize(16);
     pdf1.setFont("helvetica", "normal");
@@ -237,6 +234,7 @@ const ZipDownloader = ({ item }) => {
 
     // Save the zip file
     saveAs(zipBlob, `${titleZip}.zip`);
+    setAnchorEl(null);
   };
 
   const qrCode = async () => {
@@ -247,28 +245,66 @@ const ZipDownloader = ({ item }) => {
 
     // Save the QR code as a PNG
     saveAs(qrCodeDataURL, `${item.item.title}_registration.png`);
+    setAnchorEl(null);
   };
   const link_reg = `https://frontend-nu-flame-39.vercel.app/register/${item.item._id}`;
+  // const link_reg = `http://localhost:3000/register/${item.item._id}`;
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
-    <div>
-      <Button
+    <div className="flex " style={{ flexDirection: "column" }}>
+      <div>
+        <IconButton
+          aria-label="more"
+          aria-controls="long-menu"
+          aria-haspopup="true"
+          onClick={handleClick}
+        >
+          <MoreVertIcon />
+        </IconButton>
+        <Menu
+          id="long-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={open}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={createAndDownloadZip}>
+            Download Zip of Pdfs
+          </MenuItem>
+          <MenuItem onClick={qrCode}>Download QR code</MenuItem>
+          <MenuItem onClick={handleClose}>
+            <Link to={link_reg}>Registration Link</Link>
+          </MenuItem>
+        </Menu>
+      </div>
+      {/* <div>
+        <Link
+          to={link_reg}
+          style={{ textDecoration: "underline" }}
+          // onClick={qrCode}
+        >
+          Download Registration QR
+        </Link>
+      </div> */}
+      {/* <Button
         variant="contained"
         color="primary"
         onClick={createAndDownloadZip}
       >
         Download ZIP of PDFs
       </Button>
-      <Link
-        to={link_reg}
-        style={{ textDecoration: "underline" }}
-        onClick={qrCode}
-      >
-        Download Registration QR
-      </Link>
-      {/* <Button variant="contained" color="primary" onClick={qrCode}>
-        Download Registration QR
-      </Button> */}
+      <br />
+      */}
     </div>
   );
 };

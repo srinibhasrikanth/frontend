@@ -47,14 +47,18 @@ const Login = () => {
 
         if (res.data.user.role === "1") {
           navigate("/volunteer/dashboard");
+          toast.success("Successfully logged in");
         } else {
           navigate("/admin/dashboard");
+          toast.success("Successfully logged in");
         }
       } else {
         console.log("login failed");
+        toast.error("Something went wrong in login");
       }
     } catch (error) {
       toast.error("Login error:", error);
+      
     }
   };
 

@@ -10,6 +10,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import { toast } from "react-toastify";
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import * as XLSX from "xlsx";
 import { Link } from "react-router-dom";
 
@@ -78,93 +79,197 @@ const EmailForm = () => {
     }
   };
 
+  // Retrieve the user role from local storage
+  const storedAuth = localStorage.getItem("auth");
+  const userRole = storedAuth ? JSON.parse(storedAuth).user.role : null;
+  let event;
+  if (userRole == "1") event = "/volunteer/dashboard";
+  else event = "/admin/dashboard";
   return (
     <>
-      {data ? (
-        <>
-          <div className="flex justify-center items-center bg-gray-100">
-            <Box
-              sx={{
-                p: 4,
-                boxShadow: 3,
-                bgcolor: "background.paper",
-                borderRadius: 2,
-                width: "100%",
-                maxWidth: 800,
-              }}
-            >
-              <Typography variant="h5">Send Emails</Typography>
-              <form onSubmit={handleSubmit}>
-                <Box sx={{ display: "grid", gap: 2 }}>
-                  <TextField
-                    label="Subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    variant="standard"
-                    fullWidth
-                    size="small"
-                  />
-                  <TextField
-                    label="Body"
-                    name="body"
-                    value={formData.body}
-                    onChange={handleChange}
-                    variant="standard"
-                    fullWidth
-                    size="small"
-                    multiline
-                    rows={4}
-                  />
-                  <Button variant="contained" component="label">
-                    Upload Excel File
-                    <input type="file" hidden onChange={handleFileChange} />
-                  </Button>
-                  {fileName && (
-                    <Typography variant="body1" sx={{ mt: 2 }}>
-                      Uploaded File: {fileName}
-                    </Typography>
-                  )}
-                  <Button type="submit" variant="contained" color="primary">
-                    Send Emails
-                  </Button>
-                </Box>
-              </form>
-            </Box>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="flex flex-row justify-center items-center">
-            <h1
-              style={{
-                fontFamily: "Poppins",
-                fontWeight: 400,
-                fontStyle: "normal",
-                textAlign: "center",
-                margin: 4,
-                fontSize: "30px",
-              }}
-            >
-              Please login to continue!
-              <br />
-              <Link
-                to="/login"
-                style={{ textDecoration: "underline", color: "#3893c2" }}
+      <Typography>
+        {" "}
+        <Link to={`${event}`}>
+          <KeyboardDoubleArrowLeftIcon />
+          <span>Back to dashboard</span>
+        </Link>
+      </Typography>
+      <div className="m-5 flex justify-center pt-6">
+        {data ? (
+          <>
+            {userRole == "0" ? (
+              <>
+                {/* admin */}
+                <>
+                  <div
+                    style={{
+                      width: 800,
+                      height: "60vh",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        p: 4,
+                        boxShadow: 3,
+                        bgcolor: "background.paper",
+                        borderRadius: 2,
+                        width: "100%",
+                      }}
+                    >
+                      <Typography variant="h5">Send Email </Typography>
+                      <form onSubmit={handleSubmit}>
+                        <Box sx={{ display: "grid", gap: 2 }}>
+                          <TextField
+                            label="Subject"
+                            name="subject"
+                            value={formData.subject}
+                            onChange={handleChange}
+                            variant="standard"
+                            fullWidth
+                            size="small"
+                          />
+                          <TextField
+                            label="Body"
+                            name="body"
+                            value={formData.body}
+                            onChange={handleChange}
+                            variant="standard"
+                            fullWidth
+                            size="small"
+                            multiline
+                            rows={4}
+                          />
+                          {/* <Button variant="contained" component="label">
+                        Upload Excel File
+                        <input type="file" hidden onChange={handleFileChange} />
+                      </Button>
+                      {fileName && (
+                        <Typography variant="body1" sx={{ mt: 2 }}>
+                          Uploaded File: {fileName}
+                        </Typography>
+                      )} */}
+                          <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            style={{ width: 200 }}
+                          >
+                            Send Email
+                          </Button>
+                        </Box>
+                      </form>
+                    </Box>
+                  </div>
+                </>
+              </>
+            ) : (
+              <>
+                <div
+                  style={{
+                    width: 800,
+                    height: "60vh",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      p: 4,
+                      boxShadow: 3,
+                      bgcolor: "background.paper",
+                      borderRadius: 2,
+                      width: "100%",
+                      maxWidth: 800,
+                    }}
+                  >
+                    <Typography variant="h5">Send Emails</Typography>
+                    <form onSubmit={handleSubmit}>
+                      <Box sx={{ display: "grid", gap: 2 }}>
+                        <TextField
+                          label="Subject"
+                          name="subject"
+                          value={formData.subject}
+                          onChange={handleChange}
+                          variant="standard"
+                          fullWidth
+                          size="small"
+                        />
+                        <TextField
+                          label="Body"
+                          name="body"
+                          value={formData.body}
+                          onChange={handleChange}
+                          variant="standard"
+                          fullWidth
+                          size="small"
+                          multiline
+                          rows={4}
+                        />
+                        <Button variant="contained" component="label">
+                          Upload Excel File
+                          <input
+                            type="file"
+                            hidden
+                            onChange={handleFileChange}
+                          />
+                        </Button>
+                        {fileName && (
+                          <Typography variant="body1" sx={{ mt: 2 }}>
+                            Uploaded File: {fileName}
+                          </Typography>
+                        )}
+                        <Button
+                          type="submit"
+                          variant="contained"
+                          color="primary"
+                          style={{ width: 200 }}
+                        >
+                          Send Emails
+                        </Button>
+                      </Box>
+                    </form>
+                  </Box>
+                </div>
+              </>
+            )}
+          </>
+        ) : (
+          <>
+            <div className="flex flex-row justify-center items-center">
+              <h1
+                style={{
+                  fontFamily: "Poppins",
+                  fontWeight: 400,
+                  fontStyle: "normal",
+                  textAlign: "center",
+                  margin: 4,
+                  fontSize: "30px",
+                }}
               >
-                Click here
-              </Link>
-            </h1>
-            <img
-              src="/images/login.jpg"
-              alt=""
-              width="500px"
-              height="500px"
-              style={{ margin: 10 }}
-            />
-          </div>
-        </>
-      )}
+                Please login to continue!
+                <br />
+                <Link
+                  to="/login"
+                  style={{ textDecoration: "underline", color: "#3893c2" }}
+                >
+                  Click here
+                </Link>
+              </h1>
+              <img
+                src="/images/login.jpg"
+                alt=""
+                width="500px"
+                height="500px"
+                style={{ margin: 10 }}
+              />
+            </div>
+          </>
+        )}
+      </div>
     </>
   );
 };
