@@ -209,7 +209,11 @@ const EmailForm = () => {
                           multiline
                           rows={4}
                         />
-                        <Button variant="contained" component="label">
+                        <Button
+                          variant="contained"
+                          component="label"
+                          style={{ width: 200 }}
+                        >
                           Upload Excel File
                           <input
                             type="file"
