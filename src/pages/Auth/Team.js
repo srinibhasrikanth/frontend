@@ -56,9 +56,10 @@ const Team = () => {
           filteredData = core.filter((member) => member.batch === selectedYear);
           break;
         case "Membership":
-          filteredData = membership.filter(
-            (member) => member.batch === selectedYear
-          );
+          // filteredData = membership.filter(
+          //   (member) => member.batch === selectedYear
+          // );
+          filteredData = membership;
           break;
         case "Volunteer":
           // filteredData = volunteer.filter(
@@ -137,6 +138,7 @@ const Team = () => {
   let event;
   if (userRole == "1") event = "/volunteer/dashboard";
   else event = "/admin/dashboard";
+  console.log(membership);
   return (
     <>
       <Typography style={{ margin: 5 }}>
@@ -157,7 +159,7 @@ const Team = () => {
             onChange={handleChangeTeam}
           >
             <MenuItem value={"Core"}>Core</MenuItem>
-            <MenuItem value={"Volunteer"}>Volunteer</MenuItem>
+            {/* <MenuItem value={"Volunteer"}>Volunteer</MenuItem> */}
             <MenuItem value={"Membership"}>Membership</MenuItem>
           </Select>
         </FormControl>
